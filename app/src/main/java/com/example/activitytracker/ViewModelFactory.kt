@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.activitytracker.services.JsonService
 import com.example.activitytracker.services.StatsService
 import com.example.activitytracker.services.data.DataService
-import com.example.activitytracker.ui.main.MainFragment
 import com.example.activitytracker.ui.main.MainViewModel
 
 class ViewModelFactory() : ViewModelProvider.Factory{
