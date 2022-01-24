@@ -1,11 +1,11 @@
-package com.example.activitytracker.services.data
+package com.example.activitytracker.services
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
 
-class DataService {
+class NetworkService {
 
     private fun getNetworkResponse(url: String, callback: Callback): Call {
         val client = OkHttpClient()
