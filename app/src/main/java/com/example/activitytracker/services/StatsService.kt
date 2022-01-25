@@ -3,7 +3,7 @@ package com.example.activitytracker.services
 import okhttp3.*
 import java.io.IOException
 /*
-Uses okhttp to sendsendStats("https://bbc.github.io/sport-app-dev-tech-challenge/stats?event=display&data=${System.current a request to the stats endpoint with parameters and data attached to url param
+Uses okhttp to send Stats("https://bbc.github.io/sport-app-dev-tech-challenge/stats?event=display&data=${System.current a request to the stats endpoint with parameters and data attached to url param
 */
 class StatsService {
     

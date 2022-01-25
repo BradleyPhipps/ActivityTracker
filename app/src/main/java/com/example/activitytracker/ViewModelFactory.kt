@@ -14,6 +14,6 @@ class ViewModelFactory() : ViewModelProvider.Factory{
         } as T
     }
 
-    private fun mainViewModel(): HomeViewModel = HomeViewModel(NetworkService(), JsonService(), StatsService(), DataService(NetworkService(), JsonService()), ActivityService(DataService(NetworkService(), JsonService()),ActivityResponseToActivityCoreDataConverter())
+    private fun mainViewModel(): HomeViewModel = HomeViewModel(ActivityService(DataService(NetworkService(), JsonService()),ActivityResponseToActivityCoreDataConverter())
     )
 }
