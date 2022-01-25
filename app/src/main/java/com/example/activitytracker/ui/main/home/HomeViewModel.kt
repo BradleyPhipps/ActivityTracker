@@ -3,35 +3,41 @@ package com.example.activitytracker.ui.main.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityResponse
-import com.example.activitytracker.services.JsonService
-import com.example.activitytracker.services.StatsService
-import com.example.activitytracker.services.NetworkService
+import com.example.activitytracker.services.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val networkService: NetworkService,
                     private val jsonService: JsonService,
-                    private val statsService: StatsService
+                    private val statsService: StatsService,
+                    private val dataService: DataService,
+                    private val activityService: ActivityService
 ) : ViewModel() {
 
-    lateinit var activityResponse: ActivityResponse
+    lateinit var activityResponse: ActivityCoreData
 
-    var dataLoaded = false
-    var onArticleDataLoaded : (() -> Unit)? = null
+    var onArticleDataLoaded: (() -> Unit)? = null
     var onArticleDataLoading: (() -> Unit)? = null
 
     @ExperimentalCoroutinesApi
-    fun getActivity(){
-        Log.d("Logs: ", "activity")
-        onArticleDataLoading?.invoke()
-        viewModelScope.launch {
-            //Extract this to activity data handler
-            val response = networkService.getNetworkResponse("https://www.boredapi.com/api/activity/")
-            activityResponse = jsonService.convertToJson(response)
-            dataLoaded = true
+    fun getActivity() {
 
+        onArticleDataLoading?.invoke()
+
+        viewModelScope.launch {
+//            when(val data = dataService.requestApiDataToObject<ActivityResponse>("https://www.boredapi.com/api/activity/")){
+//                is DataServiceResult.Success-> {
+//                    activityResponse = data.data
+//                    onArticleDataLoaded?.invoke()
+//                }
+//                is DataServiceResult.Error->Log.d("Error: ", data.exception.toString())
+//            }
+            activityResponse = activityService.getSingleActivity()
             onArticleDataLoaded?.invoke()
+
+
         }
     }
 }

@@ -11,8 +11,8 @@
     <ProgressBar
         android:id="@+id/LoadingSpinner"
         style="?android:attr/progressBarStyle"
-        android:layout_width="120dp"
-        android:layout_height="136dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:progressTint="@color/md_theme_light_primary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/home_generate_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,8 @@
         app:layout_constraintBottom_toTopOf="@+id/button_generate_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025">
 
     </FrameLayout>
 

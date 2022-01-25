@@ -3,7 +3,7 @@ package com.example.activitytracker.ui.main.home
 import android.util.Log
 import android.view.View
 import com.example.activitytracker.databinding.HomeFragmentBinding
-import com.example.activitytracker.models.ActivityResponse
+import com.example.activitytracker.models.ActivityCoreData
 
 class HomeView(private val view: HomeFragmentBinding) {
 
@@ -22,13 +22,8 @@ class HomeView(private val view: HomeFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun onDataLoaded(pArticleData: ActivityResponse){
-       // view.articleRecyclerView.apply {
-        //    layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
-        //    adapter = ArticleAdapter(pArticleData)
-       // }
-        Log.d("Logs: ","${pArticleData.activity}")
+    fun onDataLoaded(activityData: ActivityCoreData){
+        Log.d("Logs: ", activityData.activityTitle)
         hideLoadingSpinner()
-     //   view.articleTopic.text = pArticleData.data.topic.title
     }
 }

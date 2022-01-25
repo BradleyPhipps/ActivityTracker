@@ -1,5 +1,6 @@
 package com.example.activitytracker.services
 
+import com.example.activitytracker.services.results.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
@@ -18,17 +19,17 @@ class NetworkService {
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun getNetworkResponse(url: String): String {
+    suspend fun makeNetworkRequest(url: String): NetworkResult<String> {
         return suspendCancellableCoroutine { continuation ->
             getNetworkResponse(url, object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    val outcome = Result.Error(e)
-                    continuation.resume(outcome.toString(), null)
+                    val outcome = NetworkResult.Error(e)
+                    continuation.resume(outcome, null)
                 }
 
                 override fun onResponse(call: Call, response: Response) {
                     response.body?.string()?.also {
-                        val outcome = it
+                        val outcome = NetworkResult.Success(it)
                         continuation.resume(outcome, null)
                     }
                 }
@@ -38,8 +39,5 @@ class NetworkService {
 
     }
 
-    sealed class Result<out R> {
-        data class Success<out T>(val data: T) : Result<T>()
-        data class Error(val exception: Exception) : Result<Nothing>()
-    }
+
 }
