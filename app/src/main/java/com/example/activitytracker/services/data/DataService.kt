@@ -1,11 +1,13 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.data
 
+import com.example.activitytracker.services.json.JsonService
+import com.example.activitytracker.services.network.INetworkService
 import com.example.activitytracker.services.results.DataServiceResult
 import com.example.activitytracker.services.results.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class DataService(
-    private val networkService: NetworkService,
+    private val networkService: INetworkService,
     private val jsonService: JsonService
     ) {
 

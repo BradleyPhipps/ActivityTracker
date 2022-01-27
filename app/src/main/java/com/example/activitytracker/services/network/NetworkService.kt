@@ -1,4 +1,4 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.network
 
 import com.example.activitytracker.services.results.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -6,7 +6,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
 
-class NetworkService {
+class NetworkService : INetworkService {
 
     private fun getNetworkResponse(url: String, callback: Callback): Call {
         val client = OkHttpClient()
@@ -19,7 +19,7 @@ class NetworkService {
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun makeNetworkRequest(url: String): NetworkResult<String> {
+    override suspend fun makeNetworkRequest(url: String): NetworkResult<String> {
         return suspendCancellableCoroutine { continuation ->
             getNetworkResponse(url, object : Callback {
                 override fun onFailure(call: Call, e: IOException) {

@@ -1,7 +1,10 @@
 package com.example.activitytracker.services
 
+import android.util.Log
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityResponse
+import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
+import com.example.activitytracker.services.data.DataService
 import com.example.activitytracker.services.results.DataServiceResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -10,21 +13,47 @@ class ActivityService(
     private val activityCoreDataConverter: ActivityResponseToActivityCoreDataConverter
     ) {
 
+    companion object{
+        const val activityRequestUrl = "https://www.boredapi.com/api/activity/"
+        const val activityKeyRequestUrl = "https://www.boredapi.com/api/activity?key="
+    }
+
     @ExperimentalCoroutinesApi
     suspend fun getSingleActivity(): ActivityCoreData{
-        return when(val response = dataService.requestApiDataToObject<ActivityResponse>("https://www.boredapi.com/api/activity/")){
+        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)){
            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
            }
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun getActivities(numOfActivities: Int): MutableList<ActivityCoreData> {
+    suspend fun getSingleActivity(key: String): ActivityCoreData{
+        Log.d("Logs: ","https://www.boredapi.com/api/activity?key=$key")
+        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+key)){
+            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
+            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
+        }
+    }
 
+    @ExperimentalCoroutinesApi
+    suspend fun getActivities(numOfActivities: Int): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
         for (i in 0..numOfActivities) {
-            when (val response = dataService.requestApiDataToObject<ActivityResponse>("https://www.boredapi.com/api/activity/")) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)) {
+                is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
+                is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
+            }
+        }
+        return listOfActivities
+    }
+
+    @ExperimentalCoroutinesApi
+    suspend fun getFollowedActivities(activityKeys: List<String>): MutableList<ActivityCoreData> {
+        val listOfActivities = mutableListOf<ActivityCoreData>()
+
+        for (i in 0..activityKeys.size) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+activityKeys[i])) {
                 is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }

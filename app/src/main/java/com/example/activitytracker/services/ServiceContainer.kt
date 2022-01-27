@@ -1,4 +1,9 @@
 package com.example.activitytracker.services
 
-class ServiceContainer {
+import com.example.activitytracker.services.data.DataService
+
+class ServiceContainer(
+    val dataService: DataService,
+    val activityService: ActivityService
+) {
 }

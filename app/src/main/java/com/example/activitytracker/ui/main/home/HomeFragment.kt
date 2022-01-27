@@ -29,10 +29,11 @@ class HomeFragment : Fragment(R.layout.main_activity) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = HomeFragmentBinding.bind(view)
-        viewModel = ViewModelFactory().create(HomeViewModel::class.java)
+        viewModel = ViewModelFactory(view.context).create(HomeViewModel::class.java)
         homeView = HomeView(binding)
         controller = HomeViewController(homeView,viewModel)
         controller.onViewReady()
+
     }
 
 }

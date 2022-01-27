@@ -1,10 +1,9 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.converter
 
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityResponse
 
 class ActivityResponseToActivityCoreDataConverter {
-
     fun convert(activityResponse:ActivityResponse): ActivityCoreData {
         with(activityResponse) {
             return ActivityCoreData(

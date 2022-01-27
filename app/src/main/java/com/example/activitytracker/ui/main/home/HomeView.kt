@@ -7,15 +7,18 @@ import com.example.activitytracker.models.ActivityCoreData
 
 class HomeView(private val view: HomeFragmentBinding) {
 
-    fun setButtonClickedListener(listener  : () -> Unit){
+    fun setButtonClickedListener(listener: () -> Unit){
         view.buttonGenerateActivity.setOnClickListener() {
             listener.invoke()
         }
     }
 
+    fun setActivityText(textToSet: String){
+        view.tvActivityName.text = textToSet
+    }
+
     fun showLoadingSpinner(){
         view.LoadingSpinner.visibility = View.VISIBLE
-        Log.d("Logs: ", "show spinner")
     }
 
     fun hideLoadingSpinner(){
@@ -23,7 +26,7 @@ class HomeView(private val view: HomeFragmentBinding) {
     }
 
     fun onDataLoaded(activityData: ActivityCoreData){
-        Log.d("Logs: ", activityData.activityTitle)
+        setActivityText(activityData.activityTitle)
         hideLoadingSpinner()
     }
 }

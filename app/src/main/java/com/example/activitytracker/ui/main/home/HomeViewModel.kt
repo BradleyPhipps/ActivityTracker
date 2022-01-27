@@ -7,7 +7,10 @@ import com.example.activitytracker.services.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val activityService: ActivityService) : ViewModel() {
+class HomeViewModel(
+    private val activityService: ActivityService,
+    private val sharedPreferencesService: SharedPreferencesService
+) : ViewModel() {
 
     lateinit var activityResponse: ActivityCoreData
 
