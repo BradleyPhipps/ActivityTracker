@@ -19,7 +19,7 @@ class ActivityService(
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun getSingleActivity(): ActivityCoreData{
+    suspend fun getRandomSingleActivity(): ActivityCoreData{
         return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)){
            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
@@ -49,11 +49,11 @@ class ActivityService(
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun getFollowedActivities(activityKeys: List<String>): MutableList<ActivityCoreData> {
+    suspend fun getSavedActivities(activityKeys: List<String>): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
-        for (i in 0..activityKeys.size) {
-            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+activityKeys[i])) {
+        for (element in activityKeys) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+ element)) {
                 is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }

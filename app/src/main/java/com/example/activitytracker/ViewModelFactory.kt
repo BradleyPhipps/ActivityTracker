@@ -7,7 +7,6 @@ import com.example.activitytracker.services.*
 import com.example.activitytracker.ui.main.home.HomeViewModel
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory{
-//add service container?
 
     private val serviceFactory = ServiceFactory(context)
 
@@ -18,5 +17,5 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         } as T
     }
 
-    private fun mainViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSharedPreferencesService())
+    private fun mainViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository())
 }

@@ -1,7 +1,9 @@
 package com.example.activitytracker.ui.main.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -9,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val activityService: ActivityService,
-    private val sharedPreferencesService: SharedPreferencesService
+    private val savedActivityRepository: SavedActivityRepository
 ) : ViewModel() {
 
     lateinit var activityResponse: ActivityCoreData
@@ -23,8 +25,26 @@ class HomeViewModel(
         onArticleDataLoading?.invoke()
 
         viewModelScope.launch {
-            activityResponse = activityService.getSingleActivity()
+            activityResponse = activityService.getRandomSingleActivity()
+
             onArticleDataLoaded?.invoke()
+        }
+    }
+
+    fun saveActivity(activity: ActivityCoreData){
+        savedActivityRepository.saveActivity(activity.activityId,activity.activityTitle)
+        Log.d("Logs: ", "Activity Saved")
+    }
+
+    @ExperimentalCoroutinesApi
+    fun getSavedActivities() {
+        viewModelScope.launch {
+            val savedActivities = activityService.getSavedActivities(savedActivityRepository.getSavedActivites().toList())
+            for(activity in savedActivities){
+                Log.d("Logs: ", activity.activityTitle)
+            }
+
+            //onArticleDataLoaded?.invoke()
         }
     }
 }

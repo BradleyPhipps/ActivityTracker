@@ -1,6 +1,7 @@
 package com.example.activitytracker.services
 
 import android.content.Context
+import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
 import com.example.activitytracker.services.data.DataService
 import com.example.activitytracker.services.json.JsonService
@@ -30,16 +31,13 @@ class ServiceFactory (private val context: Context) {
         return SharedPreferencesService(context)
     }
 
+    fun createSavedActivityRepository(): SavedActivityRepository{
+        return SavedActivityRepository(createSharedPreferencesService())
+    }
+
     fun createActivityService(): ActivityService{
         val dataService = createDataService()
         val activityCoreDataConverter = createActivityConverter()
         return ActivityService(dataService,activityCoreDataConverter)
-    }
-
-    fun createAppServices(): ServiceContainer{
-        return ServiceContainer(
-            createDataService(),
-            createActivityService()
-        )
     }
 }
