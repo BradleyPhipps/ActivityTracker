@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ActivityTracker</string>
     <string name="home_generate_activity">"I'm bored!"</string>
+    <string name="nav_my_activities">My Activities</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
 </resources>

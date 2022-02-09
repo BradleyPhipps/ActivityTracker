@@ -11,7 +11,7 @@ import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class MyActivitiesFragment : Fragment() {
+class MyActivitiesFragment : Fragment(R.layout.my_activities_fragment) {
 
     companion object {
         fun newInstance() = MyActivitiesFragment()

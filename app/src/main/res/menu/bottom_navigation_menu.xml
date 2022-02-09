@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navMyActivities"
+        android:enabled="true"
+        android:icon="@drawable/nav_my_activities"
+        android:title="@string/nav_my_activities"/>
+    <item
+        android:id="@+id/navHome"
+        android:enabled="true"
+        android:icon="@drawable/nav_home"
+        android:title="@string/nav_home"/>
+    <item
+        android:id="@+id/navSearch"
+        android:enabled="true"
+        android:icon="@drawable/nav_search"
+        android:title="@string/nav_search"/>
+</menu>

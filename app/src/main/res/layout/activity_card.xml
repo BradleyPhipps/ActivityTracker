@@ -19,10 +19,10 @@
         <ImageView
             android:id="@+id/activityImage"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:background="@color/md_theme_dark_onSecondaryContainer"
-            android:scaleType="centerCrop"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

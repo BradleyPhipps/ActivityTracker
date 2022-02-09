@@ -15,7 +15,7 @@ import com.example.activitytracker.ui.main.myactivities.MyActivitiesView
 import com.example.activitytracker.ui.main.myactivities.MyActivitiesViewController
 import com.example.activitytracker.ui.main.myactivities.MyActivitiesViewModel
 
-class ActivityDetailsFragment : Fragment() {
+class ActivityDetailsFragment : Fragment(R.layout.activity_details_fragment) {
 
     companion object {
         fun newInstance() = MyActivitiesFragment()
