@@ -1,5 +1,6 @@
 package com.example.activitytracker.ui.main.myactivities
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,8 @@ class ActivityAdapter (
         holder.activityTitle.text = activityList[position].activityTitle
         holder.activityCategory.text = activityList[position].activityType
         holder.activityFollowButton.text = "Unfollow Activity"
+        holder.activityImage.setImageResource(R.drawable.banner_education)
+        holder.activityImage.scaleType=ImageView.ScaleType.CENTER_CROP
         //Picasso.get().load(articleData.data.items[position].image.small).into(holder.articleImage)
         //holder.articleImage.contentDescription = articleData.data.items[position].image.altText
     }
@@ -42,6 +45,7 @@ class ActivityAdapter (
         var activityTitle: TextView = itemView.findViewById(R.id.activityTitle)
         var activityCategory: TextView = itemView.findViewById(R.id.activityCategory)
         var activityFollowButton: Button = itemView.findViewById(R.id.saveActivity)
+        var activityImage: ImageView = itemView.findViewById(R.id.activityImage)
 
        // var activityPrice: ImageView = itemView.findViewById(R.id.acti)
 

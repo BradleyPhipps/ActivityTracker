@@ -22,8 +22,6 @@ class HomeView(private val view: HomeFragmentBinding) {
         }
     }
 
-
-
     fun showLoadingSpinner(){
         view.LoadingSpinner.visibility = View.VISIBLE
     }

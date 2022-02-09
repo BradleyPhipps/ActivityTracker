@@ -2,13 +2,9 @@ package com.example.activitytracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.activitytracker.databinding.MainActivityBinding
-import com.example.activitytracker.ui.main.home.HomeFragment
-import com.example.activitytracker.ui.main.myactivities.MyActivitiesFragment
-import com.example.activitytracker.ui.main.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -29,11 +25,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation(){
         val navView: BottomNavigationView = binding.bottomNavigation
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-        val homeFragment = HomeFragment.newInstance()
-        val myActivitiesFragment = MyActivitiesFragment.newInstance()
-        val searchFragment = SearchFragment.newInstance()
-
         navView.selectedItemId = R.id.navHome
         navView.setupWithNavController(navController)
 
@@ -54,16 +45,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-
     }
-
-    private fun setCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment_container, fragment)
-            commit()
-        }
 }
