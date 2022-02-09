@@ -15,7 +15,6 @@ class HomeViewController(
         viewModel.onActivityDataLoading = {view.showLoadingSpinner()}
         view.setButtonClickedListener { viewModel.getActivity() }
         view.setSaveActivityClickedListener { viewModel.saveActivity(viewModel.activityResponse) }
-        view.setGetActivityClickedListener { viewModel.getSavedActivities() }
 
     }
 }

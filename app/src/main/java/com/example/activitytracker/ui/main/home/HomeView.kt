@@ -22,11 +22,7 @@ class HomeView(private val view: HomeFragmentBinding) {
         }
     }
 
-    fun setGetActivityClickedListener(listener: () -> Unit){
-        view.buttonGetActivities.setOnClickListener() {
-            listener.invoke()
-        }
-    }
+
 
     fun showLoadingSpinner(){
         view.LoadingSpinner.visibility = View.VISIBLE
