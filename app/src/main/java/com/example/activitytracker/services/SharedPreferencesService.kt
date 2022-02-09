@@ -17,16 +17,16 @@ class SharedPreferencesService(private val context: Context) {
     }
 
     fun saveToSharedPreferences(keyName: String, keyValue:String){
-        //if(sharedPreferences.contains(fileName)) {
+        if(!sharedPreferences.contains(keyName)) {
             preferenceEditor.putString(keyName, keyValue).apply()
             preferenceEditor.commit()
-       // }
+        }
     }
 
     fun removeFromSharedPreferences(keyName: String){
         if(sharedPreferences.contains(keyName)) {
-        preferenceEditor.remove(keyName).apply()
-        preferenceEditor.commit()
+            preferenceEditor.remove(keyName).apply()
+            preferenceEditor.commit()
         }
     }
 

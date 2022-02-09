@@ -27,16 +27,7 @@ class ActivityService(
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun getSingleActivity(key: String): ActivityCoreData{
-        Log.d("Logs: ","https://www.boredapi.com/api/activity?key=$key")
-        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+key)){
-            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
-            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
-        }
-    }
-
-    @ExperimentalCoroutinesApi
-    suspend fun getActivities(numOfActivities: Int): MutableList<ActivityCoreData> {
+    suspend fun getRandomActivities(numOfActivities: Int): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
         for (i in 0..numOfActivities) {
@@ -47,6 +38,17 @@ class ActivityService(
         }
         return listOfActivities
     }
+
+    @ExperimentalCoroutinesApi
+    suspend fun getSingleActivity(key: String): ActivityCoreData{
+        Log.d("Logs: ","https://www.boredapi.com/api/activity?key=$key")
+        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+key)){
+            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
+            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
+        }
+    }
+
+
 
     @ExperimentalCoroutinesApi
     suspend fun getSavedActivities(activityKeys: List<String>): MutableList<ActivityCoreData> {

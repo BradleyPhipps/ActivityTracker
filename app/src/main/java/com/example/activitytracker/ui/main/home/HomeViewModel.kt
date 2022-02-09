@@ -16,18 +16,18 @@ class HomeViewModel(
 
     lateinit var activityResponse: ActivityCoreData
 
-    var onArticleDataLoaded: (() -> Unit)? = null
-    var onArticleDataLoading: (() -> Unit)? = null
+    var onActivityDataLoaded: (() -> Unit)? = null
+    var onActivityDataLoading: (() -> Unit)? = null
 
     @ExperimentalCoroutinesApi
     fun getActivity() {
 
-        onArticleDataLoading?.invoke()
+        onActivityDataLoading?.invoke()
 
         viewModelScope.launch {
             activityResponse = activityService.getRandomSingleActivity()
 
-            onArticleDataLoaded?.invoke()
+            onActivityDataLoaded?.invoke()
         }
     }
 

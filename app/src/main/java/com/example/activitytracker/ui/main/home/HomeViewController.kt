@@ -11,8 +11,8 @@ class HomeViewController(
     //called in the fragment once the controller has been initialised - prevent race condition
     @ExperimentalCoroutinesApi
     fun onViewReady(){
-        viewModel.onArticleDataLoaded = {view.onDataLoaded(viewModel.activityResponse)}
-        viewModel.onArticleDataLoading = {view.showLoadingSpinner()}
+        viewModel.onActivityDataLoaded = {view.onDataLoaded(viewModel.activityResponse)}
+        viewModel.onActivityDataLoading = {view.showLoadingSpinner()}
         view.setButtonClickedListener { viewModel.getActivity() }
         view.setSaveActivityClickedListener { viewModel.saveActivity(viewModel.activityResponse) }
         view.setGetActivityClickedListener { viewModel.getSavedActivities() }

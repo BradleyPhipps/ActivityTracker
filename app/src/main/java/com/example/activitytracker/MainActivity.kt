@@ -3,6 +3,7 @@ package com.example.activitytracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.activitytracker.ui.main.home.HomeFragment
+import com.example.activitytracker.ui.main.myactivities.MyActivitiesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, HomeFragment.newInstance())
+                .replace(R.id.container, MyActivitiesFragment.newInstance())
                 .commitNow()
         }
     }
