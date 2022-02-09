@@ -30,14 +30,45 @@ class ActivityAdapter (
 
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
 
-        holder.activityTitle.text = activityList[position].activityTitle
-        holder.activityCategory.text = activityList[position].activityType
+        var currentActivity = activityList[position]
+
+        holder.activityTitle.text = currentActivity.activityTitle
+        holder.activityCategory.text = currentActivity.activityType
         holder.activityFollowButton.text = "Unfollow Activity"
-        holder.activityImage.setImageResource(R.drawable.banner_education)
+        holder.activityImage.setImageResource(getImageBanner(currentActivity.activityType))
         holder.activityImage.scaleType=ImageView.ScaleType.CENTER_CROP
+
+        when(currentActivity.activityType){
+            "education" -> holder.activityImage.setImageResource(R.drawable.banner_education)
+            "recreational" -> holder.activityImage.setImageResource(R.drawable.banner_recreational)
+            "cooking" -> holder.activityImage.setImageResource(R.drawable.banner_cooking)
+            "charity"-> holder.activityImage.setImageResource(R.drawable.banner_charity)
+            "music"-> holder.activityImage.setImageResource(R.drawable.banner_music)
+            "diy"-> holder.activityImage.setImageResource(R.drawable.banner_diy)
+            "busywork"-> holder.activityImage.setImageResource(R.drawable.banner_busywork)
+            "social"-> holder.activityImage.setImageResource(R.drawable.banner_social)
+            "relaxation"-> holder.activityImage.setImageResource(R.drawable.banner_relaxation)
+        }
         //Picasso.get().load(articleData.data.items[position].image.small).into(holder.articleImage)
         //holder.articleImage.contentDescription = articleData.data.items[position].image.altText
     }
+
+    private fun getImageBanner(typeString: String): Int{
+        return when(typeString){
+            "education" -> R.drawable.banner_education
+            "recreational" -> R.drawable.banner_recreational
+            "cooking" -> R.drawable.banner_cooking
+            "charity"-> R.drawable.banner_charity
+            "music"-> R.drawable.banner_music
+            "diy"-> R.drawable.banner_diy
+            "busywork"-> R.drawable.banner_busywork
+            "social"-> R.drawable.banner_social
+            "relaxation"-> R.drawable.banner_relaxation
+            else -> R.drawable.banner_recreational
+        }
+    }
+
+
 
 
     inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
