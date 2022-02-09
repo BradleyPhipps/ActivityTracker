@@ -48,8 +48,6 @@ class ActivityService(
         }
     }
 
-
-
     @ExperimentalCoroutinesApi
     suspend fun getSavedActivities(activityKeys: List<String>): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()

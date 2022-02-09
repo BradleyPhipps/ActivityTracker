@@ -1,6 +1,5 @@
 package com.example.activitytracker.ui.main.myactivities
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.activitytracker.R
 import com.example.activitytracker.ViewModelFactory
-import com.example.activitytracker.databinding.HomeFragmentBinding
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
-import com.example.activitytracker.ui.main.home.HomeView
-import com.example.activitytracker.ui.main.home.HomeViewController
-import com.example.activitytracker.ui.main.home.HomeViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class MyActivitiesFragment : Fragment() {
 
     companion object {
