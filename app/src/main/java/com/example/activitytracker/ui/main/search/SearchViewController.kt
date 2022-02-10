@@ -4,4 +4,6 @@ class SearchViewController(
     private val searchView: SearchView,
     private val searchViewModel: SearchViewModel
 ) {
+
+
 }
