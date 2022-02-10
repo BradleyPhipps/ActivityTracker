@@ -4,7 +4,8 @@
     <string name="nav_my_activities">My Activities</string>
     <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
-    <string name="my_activities_header">My Activities ></string>
+    <string name="my_activities_header">My Activities</string>
     <string name="card_unfollowText">Unfollow Activity</string>
     <string name="card_followText">Follow Activity</string>
+    <string name="home_title">Inspiration</string>
 </resources>

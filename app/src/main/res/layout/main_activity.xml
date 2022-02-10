@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/md_theme_dark_inverseSurface"
+    >
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
@@ -34,6 +36,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_navigation_menu"
+        android:background="@color/md_theme_light_primaryContainer"
         app:itemRippleColor="@color/md_theme_dark_onPrimaryContainer"
         />
 

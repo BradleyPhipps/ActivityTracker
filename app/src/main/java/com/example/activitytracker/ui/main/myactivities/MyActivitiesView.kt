@@ -27,16 +27,12 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding): Activity
 
     fun onDataLoaded(activityList: List<ActivityCoreData>){
 
-        var activityAdapter =ActivityAdapter(activityList, this)
+        val activityAdapter =ActivityAdapter(activityList, this)
         view.ActivityRecylerView.apply {
             layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
             adapter = activityAdapter
         }
-        activityAdapter.setOnItemClickListener(object: ActivityAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int){
 
-            }
-        })
         if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
 
         hideLoadingSpinner()
