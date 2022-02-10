@@ -18,6 +18,7 @@ class HomeViewModel(
 
     var onActivityDataLoaded: (() -> Unit)? = null
     var onActivityDataLoading: (() -> Unit)? = null
+    var onFollowStateChanged: ((followState:Boolean) -> Unit)? = null
 
     @ExperimentalCoroutinesApi
     fun getActivity() {
@@ -31,20 +32,23 @@ class HomeViewModel(
         }
     }
 
-    fun saveActivity(activity: ActivityCoreData){
-        savedActivityRepository.saveActivity(activity.activityId,activity.activityTitle)
+    fun setActivityFollow(activity: ActivityCoreData){
+
+        val currentlyFollowing = activity.activityFollowed
+
+        when(currentlyFollowing){
+            true -> {
+                savedActivityRepository.unfollowActivity(activity.activityId)
+                activity.activityFollowed = !currentlyFollowing
+            }
+            false ->{
+                savedActivityRepository.followActivity(activity.activityId,activity.activityTitle)
+                activity.activityFollowed = !currentlyFollowing
+            }
+        }
+
+        onFollowStateChanged?.invoke(!currentlyFollowing)
         Log.d("Logs: ", "Activity Saved")
     }
 
-    @ExperimentalCoroutinesApi
-    fun getSavedActivities() {
-        viewModelScope.launch {
-            val savedActivities = activityService.getSavedActivities(savedActivityRepository.getSavedActivites().toList())
-            for(activity in savedActivities){
-                Log.d("Logs: ", activity.activityTitle)
-            }
-
-            //onArticleDataLoaded?.invoke()
-        }
-    }
 }

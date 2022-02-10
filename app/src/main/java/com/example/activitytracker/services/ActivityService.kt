@@ -41,7 +41,6 @@ class ActivityService(
 
     @ExperimentalCoroutinesApi
     suspend fun getSingleActivity(key: String): ActivityCoreData{
-        Log.d("Logs: ","https://www.boredapi.com/api/activity?key=$key")
         return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+key)){
             is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
             is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
@@ -54,7 +53,11 @@ class ActivityService(
 
         for (element in activityKeys) {
             when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+ element)) {
-                is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
+                is DataServiceResult.Success -> {
+                    val activityToAdd = activityCoreDataConverter.convert(response.data)
+                    activityToAdd.activityFollowed = true
+                    listOfActivities.add(activityToAdd)
+                }
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }
         }

@@ -13,7 +13,8 @@ class ActivityResponseToActivityCoreDataConverter {
                 activityLink = link,
                 activityNumberParticipants = participants,
                 activityPrice = price,
-                activityType = type
+                activityType = type,
+                activityFollowed = false
             )
         }
     }

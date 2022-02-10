@@ -20,9 +20,14 @@ class SavedActivityRepository(
         }
     }
 
-    fun saveActivity(activityKey: String, activityTitle: String){
+    fun followActivity(activityKey: String, activityTitle: String){
         sharedPreferencesService.saveToSharedPreferences(activityKey, activityTitle)
     }
+
+    fun unfollowActivity(activityKey: String){
+        sharedPreferencesService.removeFromSharedPreferences(activityKey)
+    }
+
 
 
 

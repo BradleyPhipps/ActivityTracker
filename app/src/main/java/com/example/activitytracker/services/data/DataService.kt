@@ -19,7 +19,7 @@ class DataService(
         return when(val response = networkService.makeNetworkRequest(urlString)){
             is NetworkResult.Success-> {
                 loadingState = DataLoadingState.LOADED
-                DataServiceResult.Success(jsonService.convertToJson(response.data))
+                DataServiceResult.Success(jsonService.convertToObject(response.data))
             }
             is NetworkResult.Error-> {
                 loadingState = DataLoadingState.ERROR

@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.example.activitytracker.R
 import com.example.activitytracker.databinding.HomeFragmentBinding
 import com.example.activitytracker.models.ActivityCoreData
+import com.example.activitytracker.services.ActivityCardBuilder
 
 class HomeView(private val view: HomeFragmentBinding) {
 
@@ -16,7 +17,7 @@ class HomeView(private val view: HomeFragmentBinding) {
         }
     }
 
-    fun setSaveActivityClickedListener(listener: () -> Unit){
+    fun setFollowActivityClickedListener(listener: () -> Unit){
         view.activityCard.saveActivity.setOnClickListener() {
             listener.invoke()
         }
@@ -30,16 +31,21 @@ class HomeView(private val view: HomeFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun DisplayCard(activityData: ActivityCoreData){//, onClick: ()-> Unit
-        view.activityCard.activityTitle.text = activityData.activityTitle
-        view.activityCard.activityCategory.text = activityData.activityType
-        view.activityCard.activityPrice.text = activityData.activityPrice.toString()
+    private fun displayCard(activityData: ActivityCoreData){//, onClick: ()-> Unit
+        ActivityCardBuilder(view.activityCard.root).buildCard(activityData)
         view.ActivityContainer.visibility = View.VISIBLE
     }
 
+    fun setFollowButtonText(followingActivity: Boolean){
+        when(followingActivity){
+            true -> view.activityCard.saveActivity.setText(R.string.card_unfollowText)
+            false -> view.activityCard.saveActivity.setText(R.string.card_followText)
+        }
+
+    }
+
     fun onDataLoaded(activityData: ActivityCoreData){
-        //setActivityText(activityData.activityTitle)
         hideLoadingSpinner()
-        DisplayCard(activityData)
+        displayCard(activityData)
     }
 }

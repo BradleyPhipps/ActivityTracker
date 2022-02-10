@@ -11,13 +11,8 @@ class JsonService {
     //https://stackoverflow.com/questions/45949584/how-does-the-reified-keyword-in-kotlin-work
     inline fun <reified T> typeToken(): Type = object : TypeToken<T>() {}.type
 
-    inline fun <reified T> convertToJson(jsonString: String): T {
+    inline fun <reified T> convertToObject(jsonString: String): T {
         val type = typeToken<T>()
         return gsonClient.fromJson(jsonString, type)
     }
-
-
-
-
-
 }
