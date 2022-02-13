@@ -1,4 +1,4 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.data
 
 import android.content.Context
 import android.content.SharedPreferences

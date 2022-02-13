@@ -1,13 +1,10 @@
 package com.example.activitytracker.ui.main.home
 
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import com.example.activitytracker.R
 import com.example.activitytracker.databinding.HomeFragmentBinding
 import com.example.activitytracker.models.ActivityCoreData
-import com.example.activitytracker.services.ActivityCardBuilder
+import com.example.activitytracker.services.activity.ActivityCardBuilder
 
 class HomeView(private val view: HomeFragmentBinding) {
 

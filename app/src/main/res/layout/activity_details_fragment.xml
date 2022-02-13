@@ -9,56 +9,177 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/activityDetailsBannerImage"
-            android:layout_width="410dp"
-            android:layout_height="122dp"
+            android:layout_width="wrap_content"
+            android:layout_height="163dp"
             android:layout_marginTop="4dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/banner_busywork" />
 
         <TextView
-            android:id="@+id/activityDetailsTitle"
+            android:id="@+id/activityDetailsTitleHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+            android:text="@string/activityDetailsTitleHeader"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+        <com.google.android.material.card.MaterialCardView
+             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            style="@style/Widget.Material3.CardView.Elevated">
+
+            <TextView
+                android:id="@+id/activityDetailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/activityDetailsPrice"
+            android:id="@+id/activityDetailsPriceHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:text="@string/activityDetailsPriceHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"  />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            style="@style/Widget.Material3.CardView.Elevated">
+
+            <TextView
+                android:id="@+id/activityDetailsPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/activityDetailsParticipants"
+            android:id="@+id/activityDetailsParticipantsHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:text="@string/activityDetailsParticipantHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            style="@style/Widget.Material3.CardView.Elevated">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/activityDetailsParticipants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:drawableEndCompat="@drawable/activity_participant" />
+            </RelativeLayout>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/activityDetailsAccessibility"
+            android:id="@+id/activityDetailsAccessibilityHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:text="@string/activityDetailsAccessibilityHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            style="@style/Widget.Material3.CardView.Elevated">
+
+            <TextView
+                android:id="@+id/activityDetailsAccessibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/activityDetailsLink"
+            android:id="@+id/activityDetailsLinkHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="TextView" />
+            android:text="@string/activityDetailsLinkHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:visibility="gone"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            style="@style/Widget.Material3.CardView.Elevated"
+            android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/activityDetailsLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/activityDetailsLinkHeader2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activityDetailsProgressHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
 
         <SeekBar
             android:id="@+id/activityDetailsProgressSlider"
             android:layout_width="match_parent"
             android:layout_height="48dp" />
+
+        <Button
+            android:id="@+id/activityDetailsFollowButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 

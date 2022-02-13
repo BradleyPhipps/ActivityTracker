@@ -1,4 +1,4 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.navigation
 
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -8,6 +8,9 @@ class NavigationService(
     val navController: NavController,
     val jsonService: JsonService
 ) {
+    companion object{
+        val bundleKey = "activityString"
+    }
     fun navigateToFragment(destinationActionId: Int){
         navController.navigate(destinationActionId)
     }
@@ -19,7 +22,7 @@ class NavigationService(
    inline fun <reified T> createNavigationBundle(dataObject: T) : Bundle{
        val navBundle = Bundle()
        val activityString = jsonService.convertToString(dataObject)
-       navBundle.putString("activityString", activityString)
+       navBundle.putString(bundleKey, activityString)
 
        return navBundle
     }

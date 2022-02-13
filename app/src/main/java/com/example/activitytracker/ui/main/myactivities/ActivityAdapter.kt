@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityCoreData
-import com.example.activitytracker.services.ActivityCardBuilder
+import com.example.activitytracker.services.activity.ActivityCardBuilder
 
 class ActivityAdapter (
     val activityList: List<ActivityCoreData>,

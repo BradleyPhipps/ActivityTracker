@@ -10,8 +10,8 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
     fun setActivityTitle(title: String){
         view.activityDetailsTitle.text = title
     }
-    fun setActivityPrice(price: String){
-        view.activityDetailsPrice.text = price
+    fun setActivityPrice(price: Float){
+        view.activityDetailsPrice.text = convertPriceText(price)
     }
     fun setActivityAccessibility(accessibility: String){
         view.activityDetailsAccessibility.text = accessibility
@@ -22,6 +22,23 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
 
     fun setActivityBannerImage(type:String){
        view.activityDetailsBannerImage.setImageResource(getImageBanner(type))
+    }
+
+    fun setFollowButtonText(followingActivity: Boolean){
+        when(followingActivity){
+            true -> view.activityDetailsFollowButton.setText(R.string.card_unfollowText)
+            false -> view.activityDetailsFollowButton.setText(R.string.card_followText)
+        }
+    }
+
+    private fun convertPriceText(price: Float): String{
+           return when(price){
+                0f -> "FREE"
+                in 0.01f..0.3f ->  "£"
+                in 0.31f..0.6f ->"££"
+                in 0.61f..1f ->  "£££"
+               else -> "FREE"
+           }
     }
 
     private fun getImageBanner(typeString: String): Int{

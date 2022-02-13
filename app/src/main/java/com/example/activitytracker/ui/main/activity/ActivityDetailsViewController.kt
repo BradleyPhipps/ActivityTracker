@@ -13,10 +13,12 @@ class ActivityDetailsViewController(
         setViewText()
     }
 
-    fun setViewText(){
+    private fun setViewText(){
         view.setActivityTitle(viewModel.activityCoreData.activityTitle)
         view.setActivityAccessibility(viewModel.activityCoreData.activityAccessibility.toString())
-        view.setActivityPrice(viewModel.activityCoreData.activityPrice.toString())
+        view.setActivityPrice(viewModel.activityCoreData.activityPrice)
         view.setActivityParticipants(viewModel.activityCoreData.activityNumberParticipants.toString())
+        view.setActivityBannerImage(viewModel.activityCoreData.activityType)
+        view.setFollowButtonText(viewModel.activityCoreData.activityFollowed)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.activity
 
 import android.view.View
 import android.widget.Button
@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityCoreData
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 
 class ActivityCardBuilder(private val cardView: View) {
 

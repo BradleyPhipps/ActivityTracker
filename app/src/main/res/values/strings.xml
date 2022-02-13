@@ -30,6 +30,12 @@
     <string name="activityQueryParameterType">type</string>
     <string name="activityQueryParameterParticipants">participants</string>
 
+    <string name="activityDetailsParticipantHeader">Participants</string>
+    <string name="activityDetailsPriceHeader">Price</string>
+    <string name="activityDetailsAccessibilityHeader">Accessibility</string>
+    <string name="activityDetailsLinkHeader">Link</string>
+    <string name="activityDetailsTitleHeader">Activity</string>
+    <string name="activityDetailsProgressHeader">Progress</string>
 
 
 </resources>

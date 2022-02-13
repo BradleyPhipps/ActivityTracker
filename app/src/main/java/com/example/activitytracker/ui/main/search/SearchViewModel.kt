@@ -5,12 +5,11 @@ import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.activitytracker.R
 import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
-import com.example.activitytracker.services.ActivityService
-import com.example.activitytracker.services.NavigationService
+import com.example.activitytracker.services.activity.ActivityService
+import com.example.activitytracker.services.navigation.NavigationService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 

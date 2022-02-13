@@ -1,14 +1,13 @@
 package com.example.activitytracker.ui.main.home
 
-import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.example.activitytracker.R
 import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
-import com.example.activitytracker.services.*
+import com.example.activitytracker.services.activity.ActivityService
+import com.example.activitytracker.services.navigation.NavigationService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 

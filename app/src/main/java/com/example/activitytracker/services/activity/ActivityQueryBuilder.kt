@@ -1,4 +1,4 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.activity
 
 import android.content.Context
 import android.net.Uri

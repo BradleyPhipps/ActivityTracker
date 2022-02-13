@@ -1,7 +1,6 @@
-package com.example.activitytracker.services
+package com.example.activitytracker.services.activity
 
 import android.content.Context
-import android.util.Log
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.models.ActivityResponse
@@ -22,7 +21,9 @@ class ActivityService(
 
     @ExperimentalCoroutinesApi
     suspend fun getRandomSingleActivity(): ActivityCoreData{
-        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)){
+        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(
+            activityRequestUrl
+        )){
            is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
            is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
            }
@@ -33,7 +34,9 @@ class ActivityService(
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
         for (i in 0..numOfActivities) {
-            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(
+                activityRequestUrl
+            )) {
                 is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }
@@ -45,7 +48,8 @@ class ActivityService(
     suspend fun getActivitiesWithParameters(numOfActivities: Int, queryData: ActivityQueryData, context: Context): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()
         for (i in 0..numOfActivities) {
-            when (val response = dataService.requestApiDataToObject<ActivityResponse>(ActivityQueryBuilder(context).buildQuery(queryData))) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(
+                ActivityQueryBuilder(context).buildQuery(queryData))) {
                 is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }
@@ -55,7 +59,8 @@ class ActivityService(
 
     @ExperimentalCoroutinesApi
     suspend fun getSingleActivity(key: String): ActivityCoreData{
-        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+key)){
+        return when(val response = dataService.requestApiDataToObject<ActivityResponse>(
+            activityKeyRequestUrl +key)){
             is DataServiceResult.Success-> activityCoreDataConverter.convert(response.data)
             is DataServiceResult.Error-> throw KotlinNullPointerException(response.exception.localizedMessage)
         }
@@ -66,7 +71,8 @@ class ActivityService(
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
         for (element in activityKeys) {
-            when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityKeyRequestUrl+ element)) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(
+                activityKeyRequestUrl + element)) {
                 is DataServiceResult.Success -> {
                     val activityToAdd = activityCoreDataConverter.convert(response.data)
                     activityToAdd.activityFollowed = true
