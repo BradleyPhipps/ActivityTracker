@@ -15,4 +15,8 @@ class JsonService {
         val type = typeToken<T>()
         return gsonClient.fromJson(jsonString, type)
     }
+
+    inline fun <reified T> convertToString(objectToConvert: T): String {
+        return gsonClient.toJson(objectToConvert)
+    }
 }

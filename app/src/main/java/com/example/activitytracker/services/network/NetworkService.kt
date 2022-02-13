@@ -5,7 +5,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
-
+@ExperimentalCoroutinesApi
 class NetworkService : INetworkService {
 
     private fun getNetworkResponse(url: String, callback: Callback): Call {
@@ -18,7 +18,7 @@ class NetworkService : INetworkService {
         return call
     }
 
-    @ExperimentalCoroutinesApi
+
     override suspend fun makeNetworkRequest(url: String): NetworkResult<String> {
         return suspendCancellableCoroutine { continuation ->
             getNetworkResponse(url, object : Callback {

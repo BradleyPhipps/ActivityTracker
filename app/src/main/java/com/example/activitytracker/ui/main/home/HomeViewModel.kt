@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val activityService: ActivityService,
     private val savedActivityRepository: SavedActivityRepository,
-    private val navController: NavController
+    private val navService: NavigationService
 ) : ViewModel() {
 
     lateinit var activityResponse: ActivityCoreData
@@ -37,12 +37,10 @@ class HomeViewModel(
     }
 
     fun onActivityCardClicked(activity: ActivityCoreData){
-        
-        navController.navigate(R.id.action_global_searchFragment)
+        navService.navigateToFragment(R.id.action_global_searchFragment)
     }
 
     fun setActivityFollow(activity: ActivityCoreData){
-
         val currentlyFollowing = activity.activityFollowed
 
         when(currentlyFollowing){

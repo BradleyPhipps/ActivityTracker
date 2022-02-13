@@ -1,13 +1,14 @@
 package com.example.activitytracker.services
 
 import android.content.Context
+import androidx.navigation.NavController
 import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
 import com.example.activitytracker.services.data.DataService
 import com.example.activitytracker.services.json.JsonService
 import com.example.activitytracker.services.network.NetworkService
 
-class ServiceFactory (private val context: Context) {
+class ServiceFactory (private val context: Context, private val navController: NavController) {
 
     private fun createNetworkService(): NetworkService {
         return NetworkService()
@@ -39,5 +40,10 @@ class ServiceFactory (private val context: Context) {
         val dataService = createDataService()
         val activityCoreDataConverter = createActivityConverter()
         return ActivityService(dataService,activityCoreDataConverter)
+    }
+
+    fun createNavigationService(): NavigationService{
+        val jsonService = createJsonService()
+        return NavigationService(navController, jsonService)
     }
 }

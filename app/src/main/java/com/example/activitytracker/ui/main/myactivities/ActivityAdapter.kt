@@ -1,18 +1,13 @@
 package com.example.activitytracker.ui.main.myactivities
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.ActivityCardBuilder
-import com.squareup.picasso.Picasso
 
 class ActivityAdapter (
     private val activityList: List<ActivityCoreData>,
@@ -35,15 +30,17 @@ class ActivityAdapter (
 
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val currentActivity = activityList[position]
-        //TODO: this is having to find the id every call - change
+        //TODO: this is having to find the ids every call - change
         with(ActivityCardBuilder(holder.itemView)){
             buildCard(currentActivity)
-            holder.itemView.findViewById<Button>(R.id.saveActivity).setOnClickListener { activityFollowButtonClickListener(currentActivity) }
+            holder.followButton.setOnClickListener { activityFollowButtonClickListener(holder.followButton ,currentActivity) }
         }
-
     }
 
     inner class ActivityViewHolder(itemView: View, onItemClicked : (Int) -> Unit): RecyclerView.ViewHolder(itemView){
+
+        var followButton: Button = itemView.findViewById(R.id.saveActivity)
+
         init {
                itemView.setOnClickListener {
                    onItemClicked(adapterPosition)

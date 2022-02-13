@@ -1,8 +1,10 @@
 package com.example.activitytracker.ui.main.myactivities
 
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.activitytracker.R
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
 import com.example.activitytracker.models.ActivityCoreData
 
@@ -13,10 +15,6 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
             listener.invoke()
         }
     }
-     fun onActivityCardClicked(activitySelected: ActivityCoreData) {
-        Toast.makeText(view.root.context, activitySelected.activityTitle, Toast.LENGTH_SHORT).show()
-         //Navigation.findNavController().navigate(R.id.action_global_activityDetailsFragment)
-    }
 
     fun showLoadingSpinner(){
         view.LoadingSpinner.visibility = View.VISIBLE
@@ -26,6 +24,13 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
         view.LoadingSpinner.visibility = View.GONE
     }
 
+    fun setFollowButtonText(followButton: Button, followingActivity: Boolean){
+        when(followingActivity){
+            true -> followButton.setText(R.string.card_unfollowText)
+            false -> followButton.setText(R.string.card_followText)
+        }
+    }
+
     fun setupRecyclerView(activityList: List<ActivityCoreData>,
                           selectedItemListener: SelectedItemListener,
                           itemFollowButtonClickListener: ItemFollowButtonClickListener
@@ -33,12 +38,14 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
         val activityAdapter = ActivityAdapter(
             activityList,
             {selectedItemListener.invoke(it)},
-            {itemFollowButtonClickListener.invoke(it)})
+            {button,activityData -> itemFollowButtonClickListener.invoke(button, activityData)})
 
         view.ActivityRecylerView.apply {
             layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
             adapter = activityAdapter
         }
+        if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
+        hideLoadingSpinner()
     }
 
 //    fun onDataLoaded(activityList: List<ActivityCoreData>){

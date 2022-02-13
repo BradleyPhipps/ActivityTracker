@@ -47,7 +47,6 @@ class HomeView(private val view: HomeFragmentBinding) {
             true -> view.activityCard.saveActivity.setText(R.string.card_unfollowText)
             false -> view.activityCard.saveActivity.setText(R.string.card_followText)
         }
-
     }
 
     fun onDataLoaded(activityData: ActivityCoreData){

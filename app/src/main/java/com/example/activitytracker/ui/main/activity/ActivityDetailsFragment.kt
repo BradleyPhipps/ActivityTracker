@@ -2,6 +2,7 @@ package com.example.activitytracker.ui.main.activity
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,12 +26,19 @@ class ActivityDetailsFragment : Fragment(R.layout.activity_details_fragment) {
     private lateinit var viewModel: ActivityDetailsViewModel
     private lateinit var controller: ActivityDetailsViewController
     private lateinit var activityDetailsView: ActivityDetailsView
+    private lateinit var activityData: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.my_activities_fragment, container, false)
+        if(arguments != null){
+            val stringId = context?.getString(R.string.navigationServiceBundleId)
+            activityData = arguments?.get(stringId).toString()
+            Log.d("Logs: ", activityData)
+        }
+
+        return inflater.inflate(R.layout.activity_details_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

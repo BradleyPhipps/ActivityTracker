@@ -9,4 +9,5 @@
     <string name="card_followText">Follow Activity</string>
     <string name="home_title">Inspiration</string>
     <string name="search_title">Search</string>
+    <string name="navigationServiceBundleId">activityString</string>
 </resources>
