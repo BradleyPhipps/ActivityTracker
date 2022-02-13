@@ -13,6 +13,14 @@ class ActivityDetailsViewController(
         setViewText()
     }
 
+    private fun setOnSeekbarChangeListener(){
+        view.setProgressOnChangeListener { displaySeekbarChange() }
+    }
+
+    private fun displaySeekbarChange(){
+
+    }
+
     private fun setViewText(){
         view.setActivityTitle(viewModel.activityCoreData.activityTitle)
         view.setActivityAccessibility(viewModel.activityCoreData.activityAccessibility)

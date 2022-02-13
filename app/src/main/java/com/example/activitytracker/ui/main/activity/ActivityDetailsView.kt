@@ -1,11 +1,25 @@
 package com.example.activitytracker.ui.main.activity
 
 import android.view.View
+import android.widget.SeekBar
 import com.example.activitytracker.R
 import com.example.activitytracker.databinding.ActivityDetailsFragmentBinding
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
 
 class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
+
+
+    fun setFollowButtonOnClickListener(listener: ()-> Unit){
+        view.activityDetailsFollowButton.setOnClickListener{
+            listener.invoke()
+        }
+    }
+
+    fun setProgressOnChangeListener(listener:  ()-> Unit){
+        view.activityDetailsProgressSlider.setOnClickListener {
+            listener.invoke()
+        }
+    }
 
 
     fun setActivityTitle(title: String){
