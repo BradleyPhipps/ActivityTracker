@@ -10,7 +10,7 @@ import com.example.activitytracker.ui.main.home.HomeViewModel
 import com.example.activitytracker.ui.main.myactivities.MyActivitiesViewModel
 import com.example.activitytracker.ui.main.search.SearchViewModel
 
-class ViewModelFactory(private val context: Context, private val navController: NavController) : ViewModelProvider.Factory{
+class ViewModelFactory(context: Context, navController: NavController) : ViewModelProvider.Factory{
 
     private val serviceFactory = ServiceFactory(context, navController)
 
@@ -26,6 +26,6 @@ class ViewModelFactory(private val context: Context, private val navController: 
 
     private fun homeViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(), serviceFactory.createNavigationService())
     private fun myActivitiesViewModel(): MyActivitiesViewModel = MyActivitiesViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(),  serviceFactory.createNavigationService())
-    private fun searchViewModel(): SearchViewModel = SearchViewModel()
+    private fun searchViewModel(): SearchViewModel = SearchViewModel(serviceFactory.createActivityService(),serviceFactory.createNavigationService())
     private fun activityDetailsViewModel(): ActivityDetailsViewModel = ActivityDetailsViewModel()
 }

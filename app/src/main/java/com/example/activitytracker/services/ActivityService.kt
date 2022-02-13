@@ -1,7 +1,9 @@
 package com.example.activitytracker.services
 
+import android.content.Context
 import android.util.Log
 import com.example.activitytracker.models.ActivityCoreData
+import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.models.ActivityResponse
 import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
 import com.example.activitytracker.services.data.DataService
@@ -32,6 +34,18 @@ class ActivityService(
 
         for (i in 0..numOfActivities) {
             when (val response = dataService.requestApiDataToObject<ActivityResponse>(activityRequestUrl)) {
+                is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
+                is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
+            }
+        }
+        return listOfActivities
+    }
+
+    @ExperimentalCoroutinesApi
+    suspend fun getActivitiesWithParameters(numOfActivities: Int, queryData: ActivityQueryData, context: Context): MutableList<ActivityCoreData> {
+        val listOfActivities = mutableListOf<ActivityCoreData>()
+        for (i in 0..numOfActivities) {
+            when (val response = dataService.requestApiDataToObject<ActivityResponse>(ActivityQueryBuilder(context).buildQuery(queryData))) {
                 is DataServiceResult.Success -> listOfActivities.add(activityCoreDataConverter.convert(response.data))
                 is DataServiceResult.Error -> throw KotlinNullPointerException(response.exception.localizedMessage)
             }

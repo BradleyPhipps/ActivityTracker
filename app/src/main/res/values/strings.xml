@@ -9,5 +9,27 @@
     <string name="card_followText">Follow Activity</string>
     <string name="home_title">Inspiration</string>
     <string name="search_title">Search</string>
+
     <string name="navigationServiceBundleId">activityString</string>
+    <string name="activityQueryBase">https://www.boredapi.com/api/activity?</string>
+    <string name="activityQueryKey"> https://www.boredapi.com/api/activity?key=</string>
+
+    <string name="activityQueryScheme">https</string>
+    <string name="activityQueryAuthority">www.boredapi.com</string>
+    <string name="activityQueryPath1">api</string>
+    <string name="activityQueryPath2">activity</string>
+
+    <string name="activityQueryParameterAccessibility">accessibility</string>
+    <string name="activityQueryParameterMinAccessibility">minaccessibility</string>
+    <string name="activityQueryParameterMaxAccessibility">maxaccessibility</string>
+
+    <string name="activityQueryParameterPrice">price</string>
+    <string name="activityQueryParameterMinPrice">minprice</string>
+    <string name="activityQueryParameterMaxPrice">maxprice</string>
+
+    <string name="activityQueryParameterType">type</string>
+    <string name="activityQueryParameterParticipants">participants</string>
+
+
+
 </resources>

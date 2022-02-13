@@ -1,9 +1,17 @@
 package com.example.activitytracker.ui.main.search
 
 class SearchViewController(
-    private val searchView: SearchView,
-    private val searchViewModel: SearchViewModel
+    private val view: SearchView,
+    private val viewModel: SearchViewModel
 ) {
+
+    fun onViewReady(){
+        setOnSearchDataLoaded()
+    }
+
+    private fun setOnSearchDataLoaded(){
+        view.setSearchClickListener { viewModel.searchActivities(view.context) }
+    }
 
 
 }
