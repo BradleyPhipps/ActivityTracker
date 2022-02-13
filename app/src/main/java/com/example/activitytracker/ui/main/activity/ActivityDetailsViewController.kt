@@ -15,10 +15,15 @@ class ActivityDetailsViewController(
 
     private fun setViewText(){
         view.setActivityTitle(viewModel.activityCoreData.activityTitle)
-        view.setActivityAccessibility(viewModel.activityCoreData.activityAccessibility.toString())
+        view.setActivityAccessibility(viewModel.activityCoreData.activityAccessibility)
         view.setActivityPrice(viewModel.activityCoreData.activityPrice)
         view.setActivityParticipants(viewModel.activityCoreData.activityNumberParticipants.toString())
         view.setActivityBannerImage(viewModel.activityCoreData.activityType)
         view.setFollowButtonText(viewModel.activityCoreData.activityFollowed)
+
+        if(viewModel.activityCoreData.activityLink != ""){
+            view.setLinkText(viewModel.activityCoreData.activityLink.toString())
+            view.displayLinkItems()
+        }
     }
 }

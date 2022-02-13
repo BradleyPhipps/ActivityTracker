@@ -1,5 +1,6 @@
 package com.example.activitytracker.ui.main.activity
 
+import android.view.View
 import com.example.activitytracker.R
 import com.example.activitytracker.databinding.ActivityDetailsFragmentBinding
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
@@ -13,8 +14,8 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
     fun setActivityPrice(price: Float){
         view.activityDetailsPrice.text = convertPriceText(price)
     }
-    fun setActivityAccessibility(accessibility: String){
-        view.activityDetailsAccessibility.text = accessibility
+    fun setActivityAccessibility(accessibility: Float){
+        view.activityDetailsAccessibility.text = convertAccessibilityText(accessibility)
     }
     fun setActivityParticipants(participants: String){
         view.activityDetailsParticipants.text = participants
@@ -30,6 +31,14 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
             false -> view.activityDetailsFollowButton.setText(R.string.card_followText)
         }
     }
+    fun setLinkText(link: String){
+        view.activityDetailsLink.text = link
+    }
+
+    fun displayLinkItems(){
+        view.activityDetailsLinkHeader.visibility = View.VISIBLE
+        view.activityDetailsLinkCard.visibility = View.VISIBLE
+    }
 
     private fun convertPriceText(price: Float): String{
            return when(price){
@@ -39,6 +48,16 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
                 in 0.61f..1f ->  "£££"
                else -> "FREE"
            }
+    }
+
+    private fun convertAccessibilityText(accessibility: Float): String{
+        return when(accessibility){
+            0f -> "Very Difficult"
+            in 0.01f..0.3f ->  "Difficult"
+            in 0.31f..0.6f ->"Easy"
+            in 0.61f..1f ->  "Very easy"
+            else -> "Accessible"
+        }
     }
 
     private fun getImageBanner(typeString: String): Int{
