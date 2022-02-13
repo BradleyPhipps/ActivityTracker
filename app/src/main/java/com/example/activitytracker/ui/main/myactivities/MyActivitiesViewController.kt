@@ -10,7 +10,7 @@ class MyActivitiesViewController(
 ) {
 
     fun onViewReady(){
-        viewModel.onActivityDataLoaded = {view.onDataLoaded(viewModel.activityList)}
+        viewModel.onActivityDataLoaded = {view.setupRecyclerView(viewModel.activityList, {viewModel.onItemSelected(it)},{viewModel.onFollowClick(it)})}
         viewModel.onActivityDataLoading = {view.showLoadingSpinner()}
         view.setOnSwipeToRefreshListener { viewModel.getSavedActivities() }
 

@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso
 
 class ActivityAdapter (
     private val activityList: List<ActivityCoreData>,
-    private val activitySelectedListener:  (ActivityCoreData) -> Unit
-    //private val activityFollowButtonClickListener: () -> Unit
+    private val activitySelectedListener:  SelectedItemListener,
+    private val activityFollowButtonClickListener: ItemFollowButtonClickListener
     ): RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -36,7 +36,11 @@ class ActivityAdapter (
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val currentActivity = activityList[position]
         //TODO: this is having to find the id every call - change
-        ActivityCardBuilder(holder.itemView).buildCard(currentActivity)
+        with(ActivityCardBuilder(holder.itemView)){
+            buildCard(currentActivity)
+            holder.itemView.findViewById<Button>(R.id.saveActivity).setOnClickListener { activityFollowButtonClickListener(currentActivity) }
+        }
+
     }
 
     inner class ActivityViewHolder(itemView: View, onItemClicked : (Int) -> Unit): RecyclerView.ViewHolder(itemView){

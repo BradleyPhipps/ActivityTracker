@@ -26,17 +26,32 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun onDataLoaded(activityList: List<ActivityCoreData>){
-        val activityAdapter =ActivityAdapter(activityList){
-            onActivityCardClicked(it)
-        }
+    fun setupRecyclerView(activityList: List<ActivityCoreData>,
+                          selectedItemListener: SelectedItemListener,
+                          itemFollowButtonClickListener: ItemFollowButtonClickListener
+    ){
+        val activityAdapter = ActivityAdapter(
+            activityList,
+            {selectedItemListener.invoke(it)},
+            {itemFollowButtonClickListener.invoke(it)})
 
         view.ActivityRecylerView.apply {
             layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
             adapter = activityAdapter
         }
-
-        if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
-        hideLoadingSpinner()
     }
+
+//    fun onDataLoaded(activityList: List<ActivityCoreData>){
+//        val activityAdapter =ActivityAdapter(activityList){
+//            onActivityCardClicked(it)
+//        }
+//
+//        view.ActivityRecylerView.apply {
+//            layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
+//            adapter = activityAdapter
+//        }
+//
+//        if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
+//        hideLoadingSpinner()
+//    }
 }
