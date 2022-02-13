@@ -6,15 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
 import com.example.activitytracker.models.ActivityCoreData
 
-class MyActivitiesView (private val view: MyActivitiesFragmentBinding): ActivityAdapter.OnItemClickListener{
+class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
 
-    fun setOnSwipeToRefreshListener(listener: () -> Unit){
+     fun setOnSwipeToRefreshListener(listener: () -> Unit){
         view.refreshLayout.setOnRefreshListener() {
             listener.invoke()
         }
     }
-    override fun onActivityCardClicked(position: Int) {
-        Toast.makeText(view.root.context, "Item $position", Toast.LENGTH_SHORT).show()
+     fun onActivityCardClicked(activitySelected: ActivityCoreData) {
+        Toast.makeText(view.root.context, activitySelected.activityTitle, Toast.LENGTH_SHORT).show()
+         //Navigation.findNavController().navigate(R.id.action_global_activityDetailsFragment)
     }
 
     fun showLoadingSpinner(){
@@ -26,15 +27,16 @@ class MyActivitiesView (private val view: MyActivitiesFragmentBinding): Activity
     }
 
     fun onDataLoaded(activityList: List<ActivityCoreData>){
+        val activityAdapter =ActivityAdapter(activityList){
+            onActivityCardClicked(it)
+        }
 
-        val activityAdapter =ActivityAdapter(activityList, this)
         view.ActivityRecylerView.apply {
             layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
             adapter = activityAdapter
         }
 
         if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
-
         hideLoadingSpinner()
     }
 }

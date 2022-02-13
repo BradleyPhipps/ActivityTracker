@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.activitytracker.R
 import com.example.activitytracker.ViewModelFactory
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
@@ -32,7 +33,7 @@ class MyActivitiesFragment : Fragment(R.layout.my_activities_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = MyActivitiesFragmentBinding.bind(view)
-        viewModel = ViewModelFactory(view.context).create(MyActivitiesViewModel::class.java)
+        viewModel = ViewModelFactory(view.context, findNavController()).create(MyActivitiesViewModel::class.java)
         myActivitiesView = MyActivitiesView(binding)
         controller = MyActivitiesViewController(myActivitiesView,viewModel)
         controller.onViewReady()

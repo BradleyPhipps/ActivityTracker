@@ -17,6 +17,7 @@ class HomeViewController(
 
         view.setButtonClickedListener { viewModel.getActivity() }
         view.setFollowActivityClickedListener { viewModel.setActivityFollow(viewModel.activityResponse) }
+        view.setActivityCardClickedListener { viewModel.onActivityCardClicked(viewModel.activityResponse) }
 
         viewModel.getActivity()
     }

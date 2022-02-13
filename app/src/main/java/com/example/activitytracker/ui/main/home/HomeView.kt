@@ -17,6 +17,12 @@ class HomeView(private val view: HomeFragmentBinding) {
         }
     }
 
+    fun setActivityCardClickedListener(listener: () -> Unit){
+        view.activityCard.root.setOnClickListener() {
+            listener.invoke()
+        }
+    }
+
     fun setFollowActivityClickedListener(listener: () -> Unit){
         view.activityCard.saveActivity.setOnClickListener() {
             listener.invoke()

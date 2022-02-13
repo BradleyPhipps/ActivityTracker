@@ -1,5 +1,6 @@
 package com.example.activitytracker.ui.main.myactivities
 
+import androidx.navigation.NavController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -12,6 +13,7 @@ class MyActivitiesViewController(
         viewModel.onActivityDataLoaded = {view.onDataLoaded(viewModel.activityList)}
         viewModel.onActivityDataLoading = {view.showLoadingSpinner()}
         view.setOnSwipeToRefreshListener { viewModel.getSavedActivities() }
+
         viewModel.getSavedActivities()
     }
 

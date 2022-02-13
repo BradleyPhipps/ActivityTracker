@@ -3,12 +3,13 @@ package com.example.activitytracker
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import com.example.activitytracker.services.*
 import com.example.activitytracker.ui.main.activity.ActivityDetailsViewModel
 import com.example.activitytracker.ui.main.home.HomeViewModel
 import com.example.activitytracker.ui.main.myactivities.MyActivitiesViewModel
 
-class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory{
+class ViewModelFactory(private val context: Context, private val navController: NavController) : ViewModelProvider.Factory{
 
     private val serviceFactory = ServiceFactory(context)
 
@@ -21,7 +22,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         } as T
     }
 
-    private fun homeViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository())
-    private fun myActivitiesViewModel(): MyActivitiesViewModel = MyActivitiesViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository())
+    private fun homeViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(), navController)
+    private fun myActivitiesViewModel(): MyActivitiesViewModel = MyActivitiesViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(), navController)
     private fun activityDetailsViewModel(): ActivityDetailsViewModel = ActivityDetailsViewModel()
 }

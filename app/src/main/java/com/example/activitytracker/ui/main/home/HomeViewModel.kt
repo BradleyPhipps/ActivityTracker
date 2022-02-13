@@ -1,8 +1,11 @@
 package com.example.activitytracker.ui.main.home
 
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.example.activitytracker.R
 import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.*
@@ -11,7 +14,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val activityService: ActivityService,
-    private val savedActivityRepository: SavedActivityRepository
+    private val savedActivityRepository: SavedActivityRepository,
+    private val navController: NavController
 ) : ViewModel() {
 
     lateinit var activityResponse: ActivityCoreData
@@ -30,6 +34,11 @@ class HomeViewModel(
 
             onActivityDataLoaded?.invoke()
         }
+    }
+
+    fun onActivityCardClicked(activity: ActivityCoreData){
+        
+        navController.navigate(R.id.action_global_searchFragment)
     }
 
     fun setActivityFollow(activity: ActivityCoreData){

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.activitytracker.R
 import com.example.activitytracker.ViewModelFactory
 import com.example.activitytracker.databinding.HomeFragmentBinding
@@ -29,7 +30,7 @@ class HomeFragment : Fragment(R.layout.main_activity) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = HomeFragmentBinding.bind(view)
-        viewModel = ViewModelFactory(view.context).create(HomeViewModel::class.java)
+        viewModel = ViewModelFactory(view.context, findNavController()).create(HomeViewModel::class.java)
         homeView = HomeView(binding)
         controller = HomeViewController(homeView,viewModel)
         controller.onViewReady()

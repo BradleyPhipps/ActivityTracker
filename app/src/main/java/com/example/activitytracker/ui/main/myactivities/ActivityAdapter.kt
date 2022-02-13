@@ -16,14 +16,9 @@ import com.squareup.picasso.Picasso
 
 class ActivityAdapter (
     private val activityList: List<ActivityCoreData>,
-    private val activitySelectedListener: OnItemClickListener
+    private val activitySelectedListener:  (ActivityCoreData) -> Unit
+    //private val activityFollowButtonClickListener: () -> Unit
     ): RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
-
-    private lateinit var onClickListener: OnItemClickListener
-
-    fun setOnItemClickListener(listener: OnItemClickListener){
-        onClickListener = listener
-    }
 
     override fun getItemCount(): Int {
         return activityList.size
@@ -33,32 +28,24 @@ class ActivityAdapter (
         val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.activity_card, parent, false)
 
-        return ActivityViewHolder(cellForRow)
+        return ActivityViewHolder(cellForRow) { listPosition ->
+            activitySelectedListener(activityList[listPosition])
+        }
     }
 
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val currentActivity = activityList[position]
-
         //TODO: this is having to find the id every call - change
         ActivityCardBuilder(holder.itemView).buildCard(currentActivity)
     }
 
-    inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-    View.OnClickListener{
+    inner class ActivityViewHolder(itemView: View, onItemClicked : (Int) -> Unit): RecyclerView.ViewHolder(itemView){
         init {
-                itemView.setOnClickListener(this)
+               itemView.setOnClickListener {
+                   onItemClicked(adapterPosition)
+               }
             }
-
-        override fun onClick(view: View?) {
-            val position = adapterPosition
-            if(position != RecyclerView.NO_POSITION) {
-                activitySelectedListener.onActivityCardClicked(position)
-             }
-        }
     }
 
-    interface OnItemClickListener {
-        fun onActivityCardClicked(position: Int)
-    }
 
 }

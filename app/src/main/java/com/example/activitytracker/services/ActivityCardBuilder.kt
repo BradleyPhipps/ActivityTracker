@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityCoreData
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 
 class ActivityCardBuilder(private val cardView: View) {
 
@@ -17,14 +18,18 @@ class ActivityCardBuilder(private val cardView: View) {
 
     }
 
+    fun setCardListener(onFollowButtonClickListener: ()-> Unit){
+        setOnFollowButtonClickListener(cardView.findViewById(R.id.saveActivity), onFollowButtonClickListener)
+    }
+
     private fun setTitleText(titleText: String){
         cardView.findViewById<TextView>(R.id.activityTitle).text = titleText
     }
 
-    private fun setFollowButtonText(button: Button, followed: Boolean){
+    private fun setFollowButtonText(followButton: Button, followed: Boolean){
         when(followed){
-            true -> button.text = button.context.getString(R.string.card_unfollowText)
-            false -> button.text = button.context.getString(R.string.card_followText)
+            true -> followButton.text = followButton.context.getString(R.string.card_unfollowText)
+            false -> followButton.text = followButton.context.getString(R.string.card_followText)
         }
     }
 
@@ -56,5 +61,8 @@ class ActivityCardBuilder(private val cardView: View) {
             "relaxation"-> R.drawable.banner_relaxation
             else -> R.drawable.banner_recreational
         }
+    }
+    private fun setOnFollowButtonClickListener(followButton: Button,  onClickListener: ()-> Unit){
+        followButton.setOnClickListener {onClickListener()}
     }
 }

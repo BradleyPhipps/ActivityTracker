@@ -8,5 +8,5 @@
     <string name="card_unfollowText">Unfollow Activity</string>
     <string name="card_followText">Follow Activity</string>
     <string name="home_title">Inspiration</string>
-    <string name="search_title">Results</string>
+    <string name="search_title">Search</string>
 </resources>
