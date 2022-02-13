@@ -8,57 +8,44 @@ import com.example.activitytracker.R
 import com.example.activitytracker.databinding.MyActivitiesFragmentBinding
 import com.example.activitytracker.models.ActivityCoreData
 
-class MyActivitiesView (private val view: MyActivitiesFragmentBinding){
+class MyActivitiesView(private val view: MyActivitiesFragmentBinding) {
 
-     fun setOnSwipeToRefreshListener(listener: () -> Unit){
+    fun setOnSwipeToRefreshListener(listener: () -> Unit) {
         view.refreshLayout.setOnRefreshListener() {
             listener.invoke()
         }
     }
 
-    fun showLoadingSpinner(){
+    fun showLoadingSpinner() {
         view.LoadingSpinner.visibility = View.VISIBLE
     }
 
-    fun hideLoadingSpinner(){
+    fun hideLoadingSpinner() {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun setFollowButtonText(followButton: Button, followingActivity: Boolean){
-        when(followingActivity){
+    fun setFollowButtonText(followButton: Button, followingActivity: Boolean) {
+        when (followingActivity) {
             true -> followButton.setText(R.string.card_unfollowText)
             false -> followButton.setText(R.string.card_followText)
         }
     }
 
-    fun setupRecyclerView(activityList: List<ActivityCoreData>,
-                          selectedItemListener: SelectedItemListener,
-                          itemFollowButtonClickListener: ItemFollowButtonClickListener
-    ){
+    fun setupRecyclerView(
+        activityList: List<ActivityCoreData>,
+        selectedItemListener: SelectedItemListener,
+        itemFollowButtonClickListener: ItemFollowButtonClickListener
+    ) {
         val activityAdapter = ActivityAdapter(
             activityList,
-            {selectedItemListener.invoke(it)},
-            {button,activityData -> itemFollowButtonClickListener.invoke(button, activityData)})
+            { selectedItemListener.invoke(it) },
+            { button, activityData -> itemFollowButtonClickListener.invoke(button, activityData) })
 
         view.ActivityRecylerView.apply {
-            layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
             adapter = activityAdapter
         }
-        if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
-        hideLoadingSpinner()
+        if (view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
     }
-
-//    fun onDataLoaded(activityList: List<ActivityCoreData>){
-//        val activityAdapter =ActivityAdapter(activityList){
-//            onActivityCardClicked(it)
-//        }
-//
-//        view.ActivityRecylerView.apply {
-//            layoutManager = LinearLayoutManager(view.root.context, LinearLayoutManager.VERTICAL, false)
-//            adapter = activityAdapter
-//        }
-//
-//        if(view.refreshLayout.isRefreshing) view.refreshLayout.isRefreshing = false
-//        hideLoadingSpinner()
-//    }
 }

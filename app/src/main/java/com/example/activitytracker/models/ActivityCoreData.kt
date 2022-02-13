@@ -8,6 +8,7 @@ data class ActivityCoreData(
     val activityNumberParticipants: Int,
     val activityPrice: Float,
     val activityType: String,
-    var activityFollowed: Boolean
+    var activityFollowed: Boolean,
+    var activityProgress: Int = 0
 ) {
 }

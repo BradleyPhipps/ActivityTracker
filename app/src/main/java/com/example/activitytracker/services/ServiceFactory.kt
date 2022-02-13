@@ -14,7 +14,7 @@ class ServiceFactory (private val context: Context, private val navController: N
         return NetworkService()
     }
 
-    private fun createJsonService(): JsonService {
+    fun createJsonService(): JsonService {
         return JsonService()
     }
 

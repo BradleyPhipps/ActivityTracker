@@ -46,7 +46,7 @@ class ActivityDetailsFragment : Fragment(R.layout.activity_details_fragment) {
 
         val binding = ActivityDetailsFragmentBinding.bind(view)
         viewModel = ViewModelFactory(view.context, findNavController()).create(ActivityDetailsViewModel::class.java)
-        viewModel.activityData = activityData
+        viewModel.activityDataString = activityData
         activityDetailsView =ActivityDetailsView(binding)
         controller = ActivityDetailsViewController(activityDetailsView,viewModel)
         controller.onViewReady()

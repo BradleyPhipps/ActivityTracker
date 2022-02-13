@@ -7,19 +7,6 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ui.main.search.SearchFragment">
 
-<ProgressBar
-    android:id="@+id/LoadingSpinner"
-    style="?android:attr/progressBarStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:progressTint="@color/md_theme_light_primary"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:visibility="visible" />
-
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
@@ -62,9 +49,22 @@ tools:context=".ui.main.search.SearchFragment">
                         android:layout_height="match_parent"
                         android:text="Button" />
 
+                    <Spinner
+                        android:id="@+id/accessibilitySpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:id="@+id/priceSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:id="@+id/typeSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                     <EditText
                         android:id="@+id/maxAccessibility"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -82,6 +82,19 @@ tools:context=".ui.main.search.SearchFragment">
     </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/LoadingSpinner"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/md_theme_light_primary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

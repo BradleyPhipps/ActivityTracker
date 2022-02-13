@@ -35,11 +35,6 @@ class MyActivitiesViewModel(
         navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
     }
 
-    fun onFollowClick(followButton: Button, activityData: ActivityCoreData){
-        Log.d("Logs: ", activityData.activityId)
-        setActivityFollow(followButton, activityData)
-    }
-
     fun setActivityFollow(followButton:Button, activity: ActivityCoreData){
         val currentlyFollowing = activity.activityFollowed
 
@@ -49,7 +44,7 @@ class MyActivitiesViewModel(
                 activity.activityFollowed = !currentlyFollowing
             }
             false ->{
-                savedActivityRepository.followActivity(activity.activityId,activity.activityTitle)
+                savedActivityRepository.followActivity(activity.activityId,activity.activityProgress)
                 activity.activityFollowed = !currentlyFollowing
             }
         }

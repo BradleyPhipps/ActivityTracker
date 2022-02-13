@@ -37,7 +37,7 @@ class HomeViewModel(
     }
 
     fun onActivityCardClicked(activity: ActivityCoreData){
-        navService.navigateToFragment(R.id.action_global_searchFragment)
+        navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activity)
     }
 
     fun setActivityFollow(activity: ActivityCoreData){
@@ -49,7 +49,7 @@ class HomeViewModel(
                 activity.activityFollowed = !currentlyFollowing
             }
             false ->{
-                savedActivityRepository.followActivity(activity.activityId,activity.activityTitle)
+                savedActivityRepository.followActivity(activity.activityId,activity.activityProgress)
                 activity.activityFollowed = !currentlyFollowing
             }
         }

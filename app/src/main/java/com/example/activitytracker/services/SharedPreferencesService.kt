@@ -16,9 +16,9 @@ class SharedPreferencesService(private val context: Context) {
         preferenceEditor = sharedPreferences.edit()
     }
 
-    fun saveToSharedPreferences(keyName: String, keyValue:String){
+    fun saveToSharedPreferences(keyName: String, keyValue:Int){
         if(!sharedPreferences.contains(keyName)) {
-            preferenceEditor.putString(keyName, keyValue).apply()
+            preferenceEditor.putInt(keyName, keyValue).apply()
             preferenceEditor.commit()
         }
     }

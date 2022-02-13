@@ -14,6 +14,7 @@ class MyActivitiesViewController(
         setOnActivityDataLoading()
         setSwipeToRefreshListener()
         setOnFollowStateChangeListener()
+
         getSavedActivities()
     }
 
@@ -42,7 +43,9 @@ class MyActivitiesViewController(
                     { viewModel.onItemSelected(it) },
                     { button, activityData -> viewModel.setActivityFollow(button, activityData) }
                 )
+                view.hideLoadingSpinner()
             }
+
     }
 
 

@@ -26,6 +26,6 @@ class ViewModelFactory(context: Context, navController: NavController) : ViewMod
 
     private fun homeViewModel(): HomeViewModel = HomeViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(), serviceFactory.createNavigationService())
     private fun myActivitiesViewModel(): MyActivitiesViewModel = MyActivitiesViewModel(serviceFactory.createActivityService(), serviceFactory.createSavedActivityRepository(),  serviceFactory.createNavigationService())
-    private fun searchViewModel(): SearchViewModel = SearchViewModel(serviceFactory.createActivityService(),serviceFactory.createNavigationService())
-    private fun activityDetailsViewModel(): ActivityDetailsViewModel = ActivityDetailsViewModel()
+    private fun searchViewModel(): SearchViewModel = SearchViewModel(serviceFactory.createActivityService(),serviceFactory.createSavedActivityRepository(),serviceFactory.createNavigationService())
+    private fun activityDetailsViewModel(): ActivityDetailsViewModel = ActivityDetailsViewModel(serviceFactory.createSavedActivityRepository(),serviceFactory.createJsonService())
 }

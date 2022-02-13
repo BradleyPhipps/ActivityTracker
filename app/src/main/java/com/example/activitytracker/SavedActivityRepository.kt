@@ -20,8 +20,12 @@ class SavedActivityRepository(
         }
     }
 
-    fun followActivity(activityKey: String, activityTitle: String){
-        sharedPreferencesService.saveToSharedPreferences(activityKey, activityTitle)
+    fun updatedActivityProgress(activityKey: String, activityProgress: Int){
+        sharedPreferencesService.saveToSharedPreferences(activityKey,  activityProgress)
+    }
+
+    fun followActivity(activityKey: String, activityProgress: Int){
+        sharedPreferencesService.saveToSharedPreferences(activityKey, activityProgress)
     }
 
     fun unfollowActivity(activityKey: String){
