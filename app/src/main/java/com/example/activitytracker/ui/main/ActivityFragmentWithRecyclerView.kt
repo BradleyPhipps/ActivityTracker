@@ -28,7 +28,6 @@ abstract class ActivityFragmentWithRecyclerView(
         var onFollowStateChanged:((Button, Boolean) -> Unit)? = null
 
         fun navigateToSelectedItem(activityData: ActivityCoreData){
-            Log.d("Logs: ", activityData.activityTitle)
             navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
         }
 
@@ -47,6 +46,5 @@ abstract class ActivityFragmentWithRecyclerView(
             }
 
             onFollowStateChanged?.invoke(followButton, !currentlyFollowing)
-            Log.d("Logs: ", "Activity Saved")
         }
 }

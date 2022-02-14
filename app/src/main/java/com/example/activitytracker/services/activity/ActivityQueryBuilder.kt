@@ -29,12 +29,12 @@ class ActivityQueryBuilder(private val context: Context) {
         val builder = Uri.Builder()
         builder.scheme(scheme).authority(authority).appendPath(pathStart).appendPath(pathEnd)
 
-        if(queryData.activityQueryAccessibility.activityMaxAccessibility !=null){
+        if(queryData.activityQueryAccessibility.activityMaxAccessibility !=null&& queryData.activityQueryAccessibility.activityMaxAccessibility >= 0){
             builder.appendQueryParameter(minAccessibility, queryData.activityQueryAccessibility.activityMinAccessibility.toString())
             builder.appendQueryParameter(maxAccessibility, queryData.activityQueryAccessibility.activityMaxAccessibility.toString())
         }
 
-        if(queryData.activityQueryPrice.activityPriceMax !=null){
+        if(queryData.activityQueryPrice.activityPriceMax !=null && queryData.activityQueryPrice.activityPriceMax >= 0){
             builder.appendQueryParameter(minPrice, queryData.activityQueryPrice.activityPriceMin.toString())
             builder.appendQueryParameter(maxPrice, queryData.activityQueryPrice.activityPriceMin.toString())
         }
@@ -43,7 +43,7 @@ class ActivityQueryBuilder(private val context: Context) {
             builder.appendQueryParameter(participants, queryData.activityNumberParticipants.toString())
         }
 
-        if(queryData.activityType != null && queryData.activityType != ""){
+        if(queryData.activityType != null && queryData.activityType != " "){
             builder.appendQueryParameter(activityType, queryData.activityType)
         }
         return builder.build().toString()

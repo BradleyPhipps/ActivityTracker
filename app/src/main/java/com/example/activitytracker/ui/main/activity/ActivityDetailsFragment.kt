@@ -35,7 +35,6 @@ class ActivityDetailsFragment : Fragment(R.layout.activity_details_fragment) {
         if(arguments != null){
             val stringId = context?.getString(R.string.navigationServiceBundleId)
             activityData = arguments?.get(stringId).toString()
-            Log.d("Logs: ", activityData)
         }
 
         return inflater.inflate(R.layout.activity_details_fragment, container, false)

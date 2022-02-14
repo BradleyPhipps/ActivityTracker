@@ -60,6 +60,7 @@ class SearchViewController(
 
     private fun convertPriceSpinner(priceValue: String): ActivityQueryPrice{
         return when(priceValue){
+            "" -> ActivityQueryPrice(0f,-1f)
             "FREE" -> ActivityQueryPrice(0f,0f)
             "£" -> ActivityQueryPrice(0.01f,0.3f)
             "££" -> ActivityQueryPrice(0.31f,0.6f)
@@ -70,6 +71,7 @@ class SearchViewController(
 
     private fun convertAccessibilitySpinner(acessibilityValue: String): ActivityQueryAccessibility {
         return when (acessibilityValue) {
+            "" -> ActivityQueryAccessibility(0f,-1f)
             "Very Difficult" -> ActivityQueryAccessibility(0f, 0f)
             "Difficult" -> ActivityQueryAccessibility(0.01f, 0.3f)
             "Easy" -> ActivityQueryAccessibility(0.31f, 0.6f)

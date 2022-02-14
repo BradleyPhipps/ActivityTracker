@@ -32,8 +32,6 @@ class ActivityDetailsViewModel(
         if(progress != null){
             activityCoreData.activityProgress = progress
             savedActivityRepository.updateActivityProgress(activityCoreData.activityId, activityCoreData.activityProgress)
-        }else{
-            Log.d("Logs: ", "Unable to update progress")
         }
     }
 

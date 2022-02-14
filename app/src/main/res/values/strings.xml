@@ -42,19 +42,21 @@
 
         <string-array
             name="activityTypes">
-        <item>education</item>
-        <item>recreational</item>
-        <item>social</item>
-        <item>diy</item>
-        <item>charity</item>
-        <item>cooking</item>
-        <item>relaxation</item>
-        <item>music</item>
-        <item>busywork</item>
+            <item> </item>
+            <item>education</item>
+            <item>recreational</item>
+            <item>social</item>
+            <item>diy</item>
+            <item>charity</item>
+            <item>cooking</item>
+            <item>relaxation</item>
+            <item>music</item>
+            <item>busywork</item>
         </string-array>
 
     <string-array
         name="activityAccessibilityLevels">
+        <item> </item>
         <item>Very Easy</item>
         <item>Easy</item>
         <item>Slightly Difficult</item>
@@ -63,6 +65,7 @@
 
     <string-array
         name="activityPrices">
+        <item> </item>
         <item>FREE</item>
         <item>£</item>
         <item>££</item>

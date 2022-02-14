@@ -24,12 +24,14 @@ class SearchViewModel (
     private val navService: NavigationService
 ): ActivityFragmentWithRecyclerView(activityService,savedActivityRepository,navService){
 
+    val numberOfSearchItems = 10
+
     @ExperimentalCoroutinesApi
     fun searchActivities(context: Context, searchQueryData: ActivityQueryData) {
         onActivityDataLoading?.invoke()
 
         viewModelScope.launch {
-            activityList = activityService.getActivitiesWithParameters(5, searchQueryData, context,savedActivityRepository.getSavedActivitesKeys())
+            activityList = activityService.getActivitiesWithParameters(10, searchQueryData, context,savedActivityRepository.getSavedActivitesKeys())
             onActivityDataLoaded?.invoke()
             dataLoaded = true
         }

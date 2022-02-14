@@ -54,7 +54,6 @@ class HomeViewModel(
         }
 
         onFollowStateChanged?.invoke(!currentlyFollowing)
-        Log.d("Logs: ", "Activity Saved")
     }
 
 }

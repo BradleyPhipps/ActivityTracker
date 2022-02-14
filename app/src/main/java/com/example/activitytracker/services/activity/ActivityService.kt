@@ -83,7 +83,10 @@ class ActivityService(
                 is DataServiceResult.Success -> {
                     val activityToAdd = activityCoreDataConverter.convert(response.data)
                     activityToAdd.activityFollowed = savedActivityKeys.contains(activityToAdd.activityId)
-                    listOfActivities.add(activityToAdd)
+                    if(!listOfActivities.contains(activityToAdd)){
+                        listOfActivities.add(activityToAdd)
+                    }
+
                 }
                 is DataServiceResult.Error ->  emptyList<ActivityCoreData>()
             }
