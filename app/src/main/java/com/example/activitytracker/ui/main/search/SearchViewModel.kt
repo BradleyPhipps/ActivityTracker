@@ -11,6 +11,7 @@ import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.navigation.NavigationService
+import com.example.activitytracker.ui.main.ActivityFragmentWithRecyclerView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
@@ -21,15 +22,7 @@ class SearchViewModel (
     private val activityService: ActivityService,
     private val savedActivityRepository: SavedActivityRepository,
     private val navService: NavigationService
-): ViewModel() {
-
-    lateinit var activityList: List<ActivityCoreData>
-    var dataLoaded = false
-
-    var onActivityDataLoaded: (() -> Unit)? = null
-    var onActivityDataLoading: (() -> Unit)? = null
-    var onFollowStateChanged: ((Button, Boolean) -> Unit)? = null
-
+): ActivityFragmentWithRecyclerView(activityService,savedActivityRepository,navService){
 
     @ExperimentalCoroutinesApi
     fun searchActivities(context: Context, searchQueryData: ActivityQueryData) {
@@ -41,26 +34,4 @@ class SearchViewModel (
             dataLoaded = true
         }
     }
-
-    fun setActivityFollow(followButton: Button, activity: ActivityCoreData) {
-        val currentlyFollowing = activity.activityFollowed
-
-        when (currentlyFollowing) {
-            true -> {
-                savedActivityRepository.unfollowActivity(activity.activityId)
-                activity.activityFollowed = !currentlyFollowing
-            }
-            false -> {
-                savedActivityRepository.followActivity(activity.activityId, activity.activityProgress)
-                activity.activityFollowed = !currentlyFollowing
-            }
-        }
-
-        onFollowStateChanged?.invoke(followButton, !currentlyFollowing)
-    }
-
-    fun navigateToSelectedItem(activityData: ActivityCoreData){
-        navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
-    }
-
     }

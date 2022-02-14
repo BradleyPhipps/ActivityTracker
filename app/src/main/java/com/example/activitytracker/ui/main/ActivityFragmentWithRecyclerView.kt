@@ -49,14 +49,4 @@ abstract class ActivityFragmentWithRecyclerView(
             onFollowStateChanged?.invoke(followButton, !currentlyFollowing)
             Log.d("Logs: ", "Activity Saved")
         }
-
-        @ExperimentalCoroutinesApi
-        fun getSavedActivities() {
-            onActivityDataLoading?.invoke()
-            viewModelScope.launch {
-                activityList = activityService.getSavedActivities(savedActivityRepository.getSavedActivites())
-                onActivityDataLoaded?.invoke()
-                dataLoaded = true
-            }
-        }
 }
