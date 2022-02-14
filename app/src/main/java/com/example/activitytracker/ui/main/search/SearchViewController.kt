@@ -72,15 +72,15 @@ class SearchViewController(
     private fun convertAccessibilitySpinner(acessibilityValue: String): ActivityQueryAccessibility {
         return when (acessibilityValue) {
             "" -> ActivityQueryAccessibility(0f,-1f)
-            "Very Difficult" -> ActivityQueryAccessibility(0f, 0f)
-            "Difficult" -> ActivityQueryAccessibility(0.01f, 0.3f)
-            "Easy" -> ActivityQueryAccessibility(0.31f, 0.6f)
-            "Very easy" -> ActivityQueryAccessibility(0.61f, 1f)
-            else -> ActivityQueryAccessibility(0f, 1f)
+            "Very Easy" -> ActivityQueryAccessibility(0f, 0.1f)
+            "Easy" -> ActivityQueryAccessibility(0.11f, 0.3f)
+            "Difficult" -> ActivityQueryAccessibility(0.31f, 0.8f)
+            "Very Difficult" -> ActivityQueryAccessibility(0.81f, 1f)
+            else -> ActivityQueryAccessibility(0f, -1f)
         }
     }
 
     private fun runSearch(activityQueryData: ActivityQueryData){
-        viewModel.searchActivities(view.context, activityQueryData)
+        viewModel.searchActivities(activityQueryData)
     }
 }

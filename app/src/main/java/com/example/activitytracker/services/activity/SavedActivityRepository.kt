@@ -1,6 +1,5 @@
-package com.example.activitytracker
+package com.example.activitytracker.services.activity
 
-import android.util.Log
 import com.example.activitytracker.services.data.SharedPreferencesService
 
 class SavedActivityRepository(

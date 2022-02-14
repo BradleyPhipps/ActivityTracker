@@ -1,27 +1,30 @@
 package com.example.activitytracker.services.activity
 
 import android.content.Context
+import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityQueryData
 
-class ActivityQueryBuilder(private val context: Context) {
+class ActivityQueryBuilder() {
+
+
 
     //region member declarations
-    private val scheme = context.getString(R.string.activityQueryScheme)
-    private val authority = context.getString(R.string.activityQueryAuthority)
-    private val pathStart = context.getString(R.string.activityQueryPath1)
-    private val pathEnd = context.getString(R.string.activityQueryPath2)
+    private val scheme = "https"
+    private val authority = "www.boredapi.com"
+    private val pathStart = "api"
+    private val pathEnd = "activity"
 
-    private val participants = context.getString(R.string.activityQueryParameterParticipants)
-    private val activityType = context.getString(R.string.activityQueryParameterType)
+    private val participants = "participants"
+    private val activityType = "type"
 
-    private val minAccessibility = context.getString(R.string.activityQueryParameterMinAccessibility)
-    private val maxAccessibility = context.getString(R.string.activityQueryParameterMaxAccessibility)
+    private val minAccessibility = "minaccessibility"
+    private val maxAccessibility = "maxaccessibility"
 
-    private val minPrice = context.getString(R.string.activityQueryParameterMinPrice)
-    private val maxPrice = context.getString(R.string.activityQueryParameterMaxPrice)
+    private val minPrice = "minprice"
+    private val maxPrice = "maxprice"
 
     //endregion
 
@@ -36,16 +39,17 @@ class ActivityQueryBuilder(private val context: Context) {
 
         if(queryData.activityQueryPrice.activityPriceMax !=null && queryData.activityQueryPrice.activityPriceMax >= 0){
             builder.appendQueryParameter(minPrice, queryData.activityQueryPrice.activityPriceMin.toString())
-            builder.appendQueryParameter(maxPrice, queryData.activityQueryPrice.activityPriceMin.toString())
+            builder.appendQueryParameter(maxPrice, queryData.activityQueryPrice.activityPriceMax.toString())
         }
 
         if(queryData.activityNumberParticipants != null && queryData.activityNumberParticipants > 0){
             builder.appendQueryParameter(participants, queryData.activityNumberParticipants.toString())
         }
 
-        if(queryData.activityType != null && queryData.activityType != " "){
+        if(queryData.activityType != null && queryData.activityType != ""){
             builder.appendQueryParameter(activityType, queryData.activityType)
         }
+        Log.d("Logs",builder.build().toString() )
         return builder.build().toString()
     }
 

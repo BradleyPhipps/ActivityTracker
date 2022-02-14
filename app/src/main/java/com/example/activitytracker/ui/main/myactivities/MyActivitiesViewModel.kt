@@ -1,11 +1,8 @@
 package com.example.activitytracker.ui.main.myactivities
 
-import android.util.Log
 import android.widget.Button
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.activitytracker.R
-import com.example.activitytracker.SavedActivityRepository
+import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.navigation.NavigationService

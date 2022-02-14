@@ -1,9 +1,7 @@
 package com.example.activitytracker.ui.main.activity
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.example.activitytracker.SavedActivityRepository
+import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.json.JsonService
 

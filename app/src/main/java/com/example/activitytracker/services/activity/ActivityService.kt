@@ -1,7 +1,5 @@
 package com.example.activitytracker.services.activity
 
-import android.content.Context
-import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.models.ActivityResponse
@@ -74,12 +72,12 @@ class ActivityService(
     }
 
     //For search menu allows to add parameter queries onto api string
-    suspend fun getActivitiesWithParameters(numOfActivities: Int, queryData: ActivityQueryData, context: Context, savedActivityKeys: List<String>): MutableList<ActivityCoreData> {
+    suspend fun getActivitiesWithParameters(numOfActivities: Int, queryData: ActivityQueryData, savedActivityKeys: List<String>): MutableList<ActivityCoreData> {
         val listOfActivities = mutableListOf<ActivityCoreData>()
 
         for (i in 0..numOfActivities) {
             when (val response = dataService.requestApiDataToObject<ActivityResponse>(
-                ActivityQueryBuilder(context).buildQuery(queryData))) {
+                ActivityQueryBuilder().buildQuery(queryData))) {
                 is DataServiceResult.Success -> {
                     val activityToAdd = activityCoreDataConverter.convert(response.data)
                     activityToAdd.activityFollowed = savedActivityKeys.contains(activityToAdd.activityId)

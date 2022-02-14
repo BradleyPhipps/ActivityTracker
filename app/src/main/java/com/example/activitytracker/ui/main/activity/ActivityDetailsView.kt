@@ -79,10 +79,10 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
 
     private fun convertAccessibilityText(accessibility: Float): String{
         return when(accessibility){
-            0f -> "Very Difficult"
-            in 0.01f..0.3f ->  "Difficult"
-            in 0.31f..0.6f ->"Easy"
-            in 0.61f..1f ->  "Very easy"
+            in 0f..0.1f -> "Very Easy"
+            in 0.11f..0.3f ->  "Easy"
+            in 0.31f..0.8f ->"Difficult"
+            in 0.81f..1f ->  "Very Difficult"
             else -> "Accessible"
         }
     }

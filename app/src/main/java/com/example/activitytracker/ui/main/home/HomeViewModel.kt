@@ -1,10 +1,9 @@
 package com.example.activitytracker.ui.main.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.activitytracker.R
-import com.example.activitytracker.SavedActivityRepository
+import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.navigation.NavigationService
@@ -18,7 +17,6 @@ class HomeViewModel(
 ) : ViewModel() {
 
     lateinit var activityResponse: ActivityCoreData
-
     var onActivityDataLoaded: (() -> Unit)? = null
     var onActivityDataLoading: (() -> Unit)? = null
     var onFollowStateChanged: ((followState:Boolean) -> Unit)? = null
@@ -30,7 +28,6 @@ class HomeViewModel(
 
         viewModelScope.launch {
             activityResponse = activityService.getRandomSingleActivity(savedActivityRepository.getSavedActivitesKeys())
-
             onActivityDataLoaded?.invoke()
         }
     }
@@ -52,8 +49,6 @@ class HomeViewModel(
                 activity.activityFollowed = !currentlyFollowing
             }
         }
-
         onFollowStateChanged?.invoke(!currentlyFollowing)
     }
-
 }

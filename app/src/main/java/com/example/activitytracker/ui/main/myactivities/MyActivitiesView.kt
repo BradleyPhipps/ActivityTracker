@@ -24,6 +24,10 @@ class MyActivitiesView(private val view: MyActivitiesFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
+    fun setFollowButtonListener(button: Button){
+        
+    }
+
     fun setFollowButtonText(followButton: Button, followingActivity: Boolean) {
         when (followingActivity) {
             true -> followButton.setText(R.string.card_unfollowText)

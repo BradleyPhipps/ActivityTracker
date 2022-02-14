@@ -2,7 +2,7 @@ package com.example.activitytracker.services
 
 import android.content.Context
 import androidx.navigation.NavController
-import com.example.activitytracker.SavedActivityRepository
+import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
 import com.example.activitytracker.services.data.DataService
@@ -10,7 +10,6 @@ import com.example.activitytracker.services.data.SharedPreferencesService
 import com.example.activitytracker.services.json.JsonService
 import com.example.activitytracker.services.navigation.NavigationService
 import com.example.activitytracker.services.network.NetworkService
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ServiceFactory (private val context: Context, private val navController: NavController) {
 
@@ -36,7 +35,7 @@ class ServiceFactory (private val context: Context, private val navController: N
         return SharedPreferencesService(context)
     }
 
-    fun createSavedActivityRepository(): SavedActivityRepository{
+    fun createSavedActivityRepository(): SavedActivityRepository {
         return SavedActivityRepository(createSharedPreferencesService())
     }
 

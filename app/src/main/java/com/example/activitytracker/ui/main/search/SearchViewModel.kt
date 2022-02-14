@@ -1,12 +1,8 @@
 package com.example.activitytracker.ui.main.search
 
-import android.content.Context
-import android.util.Log
 import android.widget.Button
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.activitytracker.R
-import com.example.activitytracker.SavedActivityRepository
+import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.services.activity.ActivityService
@@ -27,11 +23,11 @@ class SearchViewModel (
     val numberOfSearchItems = 10
 
     @ExperimentalCoroutinesApi
-    fun searchActivities(context: Context, searchQueryData: ActivityQueryData) {
+    fun searchActivities(searchQueryData: ActivityQueryData) {
         onActivityDataLoading?.invoke()
 
         viewModelScope.launch {
-            activityList = activityService.getActivitiesWithParameters(10, searchQueryData, context,savedActivityRepository.getSavedActivitesKeys())
+            activityList = activityService.getActivitiesWithParameters(10, searchQueryData,savedActivityRepository.getSavedActivitesKeys())
             onActivityDataLoaded?.invoke()
             dataLoaded = true
         }

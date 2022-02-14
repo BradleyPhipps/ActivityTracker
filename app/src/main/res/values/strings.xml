@@ -40,6 +40,34 @@
     <string name="searchFilterPrice">Price</string>
     <string name="searchFilterType">Type</string>
 
+
+    <string name="cardTextPriceFree">FREE</string>
+    <string name="cardTextPriceCheap">£</string>
+    <string name="cardTextPriceMedium">££</string>
+    <string name="cardTextPriceExpensive">£££</string>
+
+    "education" -> R.drawable.banner_education
+    "recreational" -> R.drawable.banner_recreational
+    "cooking" -> R.drawable.banner_cooking
+    "charity"-> R.drawable.banner_charity
+    "music"-> R.drawable.banner_music
+    "diy"-> R.drawable.banner_diy
+    "busywork"-> R.drawable.banner_busywork
+    "social"-> R.drawable.banner_social
+    "relaxation"-> R.drawable.banner_relaxation
+
+    <string name="cardTextCategoryEducation">educations</string>
+    <string name="cardTextCategoryRecreational">recreational</string>
+    <string name="cardTextCategoryCooking">cooking</string>
+    <string name="cardTextCategoryCharity">charity</string>
+    <string name="cardTextCategoryMusic">music</string>
+    <string name="cardTextCategoryDiy">diy</string>
+    <string name="cardTextCategoryBusywork">busywork</string>
+    <string name="cardTextCategorySocial">social</string>
+    <string name="cardTextCategoryRelaxation">relaxation</string>
+
+
+
         <string-array
             name="activityTypes">
             <item> </item>
@@ -59,8 +87,8 @@
         <item> </item>
         <item>Very Easy</item>
         <item>Easy</item>
-        <item>Slightly Difficult</item>
         <item>Difficult</item>
+        <item>Very Difficult</item>
     </string-array>
 
     <string-array
