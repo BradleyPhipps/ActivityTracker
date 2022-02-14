@@ -10,7 +10,7 @@ class ActivityDetailsViewController(
 ) {
 
     fun onViewReady(){
-        viewModel.convertDataStringToActivity()
+        viewModel.convertDataStringToActivity(viewModel.activityDataString)
         setOnSeekbarChangeListener()
         setOnFollowClickListener()
         setViewText()

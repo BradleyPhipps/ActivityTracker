@@ -11,7 +11,9 @@ class HomeViewController(
     //called in the fragment once the controller has been initialised
     @ExperimentalCoroutinesApi
     fun onViewReady(){
-        viewModel.onActivityDataLoaded = { displayData() }
+        viewModel.onActivityDataLoaded = {
+            view.hideLoadingSpinner()
+            view.displayCard(viewModel.activityResponse)}
         viewModel.onActivityDataLoading = { displayLoadingSpinner() }
         viewModel.onFollowStateChanged = { displayFollowStateChange()}
 
@@ -22,8 +24,10 @@ class HomeViewController(
         viewModel.getActivity()
     }
 
-    private fun displayData(){
-        view.onDataLoaded(viewModel.activityResponse)
+
+
+    fun displayData(){
+
     }
 
     private fun displayLoadingSpinner(){

@@ -23,9 +23,7 @@ class HomeViewModel(
 
     @ExperimentalCoroutinesApi
     fun getActivity() {
-
         onActivityDataLoading?.invoke()
-
         viewModelScope.launch {
             activityResponse = activityService.getRandomSingleActivity(savedActivityRepository.getSavedActivitesKeys())
             onActivityDataLoaded?.invoke()

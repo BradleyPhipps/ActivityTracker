@@ -24,14 +24,11 @@ class MyActivitiesView(private val view: MyActivitiesFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun setFollowButtonListener(button: Button){
-        
-    }
 
-    fun setFollowButtonText(followButton: Button, followingActivity: Boolean) {
+    fun setFollowButtonText(followButton: Button?, followingActivity: Boolean) {
         when (followingActivity) {
-            true -> followButton.setText(R.string.card_unfollowText)
-            false -> followButton.setText(R.string.card_followText)
+            true -> followButton?.setText(R.string.card_unfollowText)
+            false -> followButton?.setText(R.string.card_followText)
         }
     }
 
@@ -43,7 +40,7 @@ class MyActivitiesView(private val view: MyActivitiesFragmentBinding) {
         val activityAdapter = ActivityAdapter(
             activityList,
             { selectedItemListener.invoke(it) },
-            { button, activityData -> itemFollowButtonClickListener.invoke(button, activityData) })
+            { activityData -> itemFollowButtonClickListener.invoke(activityData) })
 
         view.ActivityRecylerView.apply {
             layoutManager =

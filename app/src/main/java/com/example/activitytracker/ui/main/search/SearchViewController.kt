@@ -39,9 +39,8 @@ class SearchViewController(
                 view.setupRecyclerView(
                         viewModel.activityList,
                         { viewModel.navigateToSelectedItem(it) },
-                        { button, activityData ->
+                        {  activityData ->
                             viewModel.setActivityFollow(
-                                button,
                                 activityData
                             )
                         }

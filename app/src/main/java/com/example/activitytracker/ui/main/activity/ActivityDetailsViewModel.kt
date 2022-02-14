@@ -12,8 +12,8 @@ class ActivityDetailsViewModel(
     lateinit var activityDataString: String
     lateinit var activityCoreData: ActivityCoreData
 
-    fun convertDataStringToActivity(){
-        activityCoreData = jsonService.convertToObject(activityDataString)
+    fun convertDataStringToActivity(activityString: String){
+        activityCoreData = jsonService.convertToObject(activityString)
     }
 
     fun unfollowActivity(activityData: ActivityCoreData){

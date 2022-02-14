@@ -12,7 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 typealias SelectedItemListener = (ActivityCoreData) -> Unit
-typealias ItemFollowButtonClickListener = (Button, ActivityCoreData) -> Unit
+typealias ItemFollowButtonClickListener = (ActivityCoreData) -> Unit
 
 class SearchViewModel (
     private val activityService: ActivityService,

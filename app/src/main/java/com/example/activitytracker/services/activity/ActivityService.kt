@@ -84,7 +84,6 @@ class ActivityService(
                     if(!listOfActivities.contains(activityToAdd)){
                         listOfActivities.add(activityToAdd)
                     }
-
                 }
                 is DataServiceResult.Error ->  emptyList<ActivityCoreData>()
             }

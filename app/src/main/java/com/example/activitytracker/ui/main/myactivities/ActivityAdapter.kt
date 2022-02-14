@@ -33,7 +33,21 @@ class ActivityAdapter (
         //TODO: this is having to find the ids every call - change
         with(ActivityCardBuilder(holder.itemView)){
             buildCard(currentActivity)
-            holder.followButton.setOnClickListener { activityFollowButtonClickListener(holder.followButton ,currentActivity) }
+            holder.followButton.setOnClickListener {
+                activityFollowButtonClickListener(currentActivity)
+                setFollowText(holder.followButton, currentActivity.activityFollowed)
+            }
+        }
+    }
+
+    private fun setFollowText(button: Button, activityFollowing: Boolean){
+        when(activityFollowing){
+            true -> {
+               button.text = "Unfollow Activity"
+            }
+            false ->{
+                button.text = "Follow Activity"
+            }
         }
     }
 

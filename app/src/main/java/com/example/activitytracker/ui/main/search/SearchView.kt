@@ -55,7 +55,7 @@ class SearchView(private val view: SearchFragmentBinding) {
         val activityAdapter = ActivityAdapter(
             activityList,
             {selectedItemListener.invoke(it)},
-            {button,activityData -> itemFollowButtonClickListener.invoke(button, activityData)}
+            {activityData -> itemFollowButtonClickListener.invoke(activityData)}
         )
 
         view.SearchRecyclerView.apply {

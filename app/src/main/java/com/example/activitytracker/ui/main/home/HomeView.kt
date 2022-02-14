@@ -34,7 +34,7 @@ class HomeView(private val view: HomeFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    private fun displayCard(activityData: ActivityCoreData){//, onClick: ()-> Unit
+    fun displayCard(activityData: ActivityCoreData){//, onClick: ()-> Unit
         ActivityCardBuilder(view.activityCard.root).buildCard(activityData)
         view.ActivityContainer.visibility = View.VISIBLE
     }
@@ -44,10 +44,5 @@ class HomeView(private val view: HomeFragmentBinding) {
             true -> view.activityCard.saveActivity.setText(R.string.card_unfollowText)
             false -> view.activityCard.saveActivity.setText(R.string.card_followText)
         }
-    }
-
-    fun onDataLoaded(activityData: ActivityCoreData){
-        hideLoadingSpinner()
-        displayCard(activityData)
     }
 }

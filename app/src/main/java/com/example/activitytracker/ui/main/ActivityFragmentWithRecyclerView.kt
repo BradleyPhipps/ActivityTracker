@@ -27,7 +27,7 @@ abstract class ActivityFragmentWithRecyclerView(
             navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
         }
 
-        fun setActivityFollow(followButton: Button, activity: ActivityCoreData){
+        fun setActivityFollow(activity: ActivityCoreData){
             val currentlyFollowing = activity.activityFollowed
 
             when(currentlyFollowing){
@@ -40,7 +40,5 @@ abstract class ActivityFragmentWithRecyclerView(
                     activity.activityFollowed = !currentlyFollowing
                 }
             }
-
-            onFollowStateChanged?.invoke(followButton, !currentlyFollowing)
         }
 }

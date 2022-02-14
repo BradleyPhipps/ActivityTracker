@@ -1,11 +1,15 @@
-package com.example.activitytracker.ui.main.myactivities
+package com.example.activitytracker.ui.main.search
 
 import android.widget.Button
 import com.example.MainCoroutineRule
 import com.example.activitytracker.models.ActivityCoreData
+import com.example.activitytracker.models.ActivityQueryAccessibility
+import com.example.activitytracker.models.ActivityQueryData
+import com.example.activitytracker.models.ActivityQueryPrice
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.services.navigation.NavigationService
+import com.example.activitytracker.ui.main.search.SearchViewModel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Before
@@ -17,7 +21,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
-class MyActivitiesViewModelTest {
+class SearchViewModelTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
@@ -30,7 +34,7 @@ class MyActivitiesViewModelTest {
     @Mock
     private lateinit var mockNavService: NavigationService
 
-    private lateinit var myActivitiesViewModel: MyActivitiesViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
     private var mockActivity =
         ActivityCoreData(0.0f,
@@ -42,6 +46,19 @@ class MyActivitiesViewModelTest {
             "eductation",
             false,
             0)
+
+    val mockQueryData = ActivityQueryData(
+        ActivityQueryAccessibility(
+            0f,
+            -1f
+        ),
+        1,
+        ActivityQueryPrice(
+            0f,
+            -1f
+        ),
+        "education"
+    )
 
     private var keyList = listOf("1234", "22315")
     private var mockMap = emptyMap<String, String>()
@@ -60,7 +77,7 @@ class MyActivitiesViewModelTest {
         `given data is returned from the activityService`()
         `given onActivityDataLoading is set`()
         `given onActivityDataLoaded is set`()
-        `when getSavedActivities is invoked`()
+        `when searchActivities is invoked`()
         `then onDataLoading is invoked`()
         `then onDataLoaded is invoked`()
     }
@@ -82,33 +99,33 @@ class MyActivitiesViewModelTest {
 
     //GIVEN
     private fun `given a viewModel is initialised`() {
-        myActivitiesViewModel = MyActivitiesViewModel(mockActivityService, mockSavedActivityRepository, mockNavService)
+        searchViewModel = SearchViewModel(mockActivityService, mockSavedActivityRepository, mockNavService)
     }
 
     private suspend fun `given data is returned from the activityService`(){
-        whenever(mockActivityService.getSavedActivities(mockMap)).thenReturn(mutableListOf(mockActivity))
+        whenever(mockActivityService.getActivitiesWithParameters(any(), any(), any())).thenReturn(mutableListOf(mockActivity))
     }
 
     private fun `given onActivityDataLoaded is set`() {
-        myActivitiesViewModel.onActivityDataLoaded = {
+        searchViewModel.onActivityDataLoaded = {
             onDataLoadedInvoked = true
         }
     }
 
     private fun `given onActivityDataLoading is set`() {
-        myActivitiesViewModel.onActivityDataLoading = {
+        searchViewModel.onActivityDataLoading = {
             onDataLoadingInvoked = true
         }
     }
 
     //WHEN
-    private fun `when getSavedActivities is invoked`() {
-        myActivitiesViewModel.getSavedActivities()
+    private fun `when searchActivities is invoked`() {
+        searchViewModel.searchActivities(mockQueryData)
     }
 
     private fun `when setActivityFollow is invoked`(followed: Boolean) {
         mockActivity.activityFollowed = followed
-        myActivitiesViewModel.setActivityFollow(mockActivity)
+        searchViewModel.setActivityFollow(mockActivity)
     }
     //THEN
 

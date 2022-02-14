@@ -41,7 +41,7 @@ class MyActivitiesViewController(
                 view.setupRecyclerView(
                     viewModel.activityList,
                     { viewModel.navigateToSelectedItem(it) },
-                    { button, activityData -> viewModel.setActivityFollow(button, activityData) }
+                    { activityData -> viewModel.setActivityFollow(activityData) }
                 )
                 view.hideLoadingSpinner()
             }

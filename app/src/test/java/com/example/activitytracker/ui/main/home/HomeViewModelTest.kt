@@ -56,8 +56,6 @@ class HomeViewModelTest {
         MockitoAnnotations.openMocks(this)
     }
 
-
-
     @Test
     fun `viewModel should invoke loading and loaded call backs on getActivity being invoked`() = mainCoroutineRule.runBlockingTest{
         `given a viewModel is initialised`()
