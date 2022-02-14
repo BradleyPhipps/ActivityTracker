@@ -1,5 +1,6 @@
 package com.example.activitytracker
 
+import android.util.Log
 import com.example.activitytracker.services.data.SharedPreferencesService
 
 class SavedActivityRepository(
@@ -10,7 +11,14 @@ class SavedActivityRepository(
     init {
         sharedPreferencesService.openSharedPreferences(fileName)
     }
-     fun getSavedActivites(): List<String>{
+     fun getSavedActivites(): Map<String, *>{
+        val savedActivities = sharedPreferencesService.getSharedPreferences()
+        return when{
+            savedActivities.isNullOrEmpty() -> emptyMap<String,Int>()
+            else -> savedActivities
+        }
+    }
+    fun getSavedActivitesKeys(): List<String>{
         val savedActivities = sharedPreferencesService.getSharedPreferenceKeys()
 
         return when{
@@ -19,8 +27,8 @@ class SavedActivityRepository(
         }
     }
 
-    fun updatedActivityProgress(activityKey: String, activityProgress: Int){
-        sharedPreferencesService.saveToSharedPreferences(activityKey,  activityProgress)
+    fun updateActivityProgress(activityKey: String, activityProgress: Int){
+        sharedPreferencesService.updateSharedPreference(activityKey,  activityProgress)
     }
 
     fun followActivity(activityKey: String, activityProgress: Int){

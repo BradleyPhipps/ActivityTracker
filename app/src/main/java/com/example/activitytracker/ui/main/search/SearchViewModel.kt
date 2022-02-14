@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.activitytracker.R
 import com.example.activitytracker.SavedActivityRepository
 import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.models.ActivityQueryData
@@ -23,7 +24,6 @@ class SearchViewModel (
 ): ViewModel() {
 
     lateinit var activityList: List<ActivityCoreData>
-    var activityQuery = ActivityQueryData(0f, 1f, 0, 0f, 1f, "")
     var dataLoaded = false
 
     var onActivityDataLoaded: (() -> Unit)? = null
@@ -32,11 +32,11 @@ class SearchViewModel (
 
 
     @ExperimentalCoroutinesApi
-    fun searchActivities(context: Context) {
+    fun searchActivities(context: Context, searchQueryData: ActivityQueryData) {
         onActivityDataLoading?.invoke()
 
         viewModelScope.launch {
-            activityList = activityService.getActivitiesWithParameters(5, activityQuery, context)
+            activityList = activityService.getActivitiesWithParameters(5, searchQueryData, context,savedActivityRepository.getSavedActivitesKeys())
             onActivityDataLoaded?.invoke()
             dataLoaded = true
         }
@@ -58,26 +58,9 @@ class SearchViewModel (
 
         onFollowStateChanged?.invoke(followButton, !currentlyFollowing)
     }
-        fun onItemSelected(activityData: ActivityCoreData) {
-            Log.d("Logs: ", activityData.activityAccessibility.toString())
-            //   navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
-        }
 
-        fun setSearchQuery(
-            minAccessibility: Float,
-            maxAccessibility: Float,
-            participants: Int,
-            minPrice: Float,
-            maxPrice: Float,
-            activityType: String
-        ) {
-            activityQuery = ActivityQueryData(
-                minAccessibility,
-                maxAccessibility,
-                participants,
-                minPrice,
-                maxPrice,
-                activityType
-            )
-        }
+    fun navigateToSelectedItem(activityData: ActivityCoreData){
+        navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
+    }
+
     }

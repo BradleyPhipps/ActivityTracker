@@ -29,7 +29,7 @@ class HomeViewModel(
         onActivityDataLoading?.invoke()
 
         viewModelScope.launch {
-            activityResponse = activityService.getRandomSingleActivity()
+            activityResponse = activityService.getRandomSingleActivity(savedActivityRepository.getSavedActivitesKeys())
 
             onActivityDataLoaded?.invoke()
         }

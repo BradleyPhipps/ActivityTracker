@@ -5,6 +5,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.io.IOException
+import java.lang.Exception
+
 @ExperimentalCoroutinesApi
 class NetworkService : INetworkService {
 
@@ -29,7 +31,12 @@ class NetworkService : INetworkService {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.body?.string()?.also {
-                        val outcome = NetworkResult.Success(it)
+                        lateinit var outcome: NetworkResult<String>
+                        if(it.contains("error")){
+                            outcome   = NetworkResult.Error(Exception(it))
+                        }else{
+                            outcome   = NetworkResult.Success(it)
+                        }
                         continuation.resume(outcome, null)
                     }
                 }

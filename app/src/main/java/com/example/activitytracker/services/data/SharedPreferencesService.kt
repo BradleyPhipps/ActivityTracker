@@ -2,6 +2,7 @@ package com.example.activitytracker.services.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 
 class SharedPreferencesService(private val context: Context) {
 
@@ -23,6 +24,11 @@ class SharedPreferencesService(private val context: Context) {
         }
     }
 
+    fun updateSharedPreference(keyName: String, keyValue:Int){
+            preferenceEditor.putInt(keyName, keyValue).apply()
+            preferenceEditor.commit()
+    }
+
     fun removeFromSharedPreferences(keyName: String){
         if(sharedPreferences.contains(keyName)) {
             preferenceEditor.remove(keyName).apply()
@@ -30,8 +36,9 @@ class SharedPreferencesService(private val context: Context) {
         }
     }
 
-    fun getSharedPreferences(): MutableList<String>? {
-        return sharedPreferences.getStringSet(fileName, emptySet())?.toMutableList()
+    fun getSharedPreferences(): Map<String, *> {
+        return sharedPreferences.all
+
     }
 
     fun getSharedPreferenceKeys(): MutableList<String> {

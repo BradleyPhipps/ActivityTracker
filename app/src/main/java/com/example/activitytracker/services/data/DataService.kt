@@ -14,7 +14,8 @@ class DataService(
     @ExperimentalCoroutinesApi
     internal suspend inline fun <reified T> requestApiDataToObject(urlString: String): DataServiceResult<T> {
         return when(val response = networkService.makeNetworkRequest(urlString)){
-            is NetworkResult.Success-> {
+
+            is NetworkResult.Success  -> {
                 DataServiceResult.Success(jsonService.convertToObject(response.data))
             }
             is NetworkResult.Error-> {

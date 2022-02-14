@@ -10,6 +10,7 @@ import com.example.activitytracker.services.data.SharedPreferencesService
 import com.example.activitytracker.services.json.JsonService
 import com.example.activitytracker.services.navigation.NavigationService
 import com.example.activitytracker.services.network.NetworkService
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ServiceFactory (private val context: Context, private val navController: NavController) {
 
@@ -31,7 +32,7 @@ class ServiceFactory (private val context: Context, private val navController: N
         return ActivityResponseToActivityCoreDataConverter()
     }
 
-    fun createSharedPreferencesService(): SharedPreferencesService {
+    private fun createSharedPreferencesService(): SharedPreferencesService {
         return SharedPreferencesService(context)
     }
 

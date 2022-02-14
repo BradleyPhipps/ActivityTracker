@@ -2,6 +2,7 @@ package com.example.activitytracker.services.activity
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityQueryData
 
@@ -28,11 +29,23 @@ class ActivityQueryBuilder(private val context: Context) {
         val builder = Uri.Builder()
         builder.scheme(scheme).authority(authority).appendPath(pathStart).appendPath(pathEnd)
 
-        if(queryData.activityMaxAccessibility !=null){
-            builder.appendQueryParameter(minAccessibility, queryData.activityMinAccessibility.toString())
-            builder.appendQueryParameter(maxAccessibility, queryData.activityMaxAccessibility.toString())
+        if(queryData.activityQueryAccessibility.activityMaxAccessibility !=null){
+            builder.appendQueryParameter(minAccessibility, queryData.activityQueryAccessibility.activityMinAccessibility.toString())
+            builder.appendQueryParameter(maxAccessibility, queryData.activityQueryAccessibility.activityMaxAccessibility.toString())
         }
 
+        if(queryData.activityQueryPrice.activityPriceMax !=null){
+            builder.appendQueryParameter(minPrice, queryData.activityQueryPrice.activityPriceMin.toString())
+            builder.appendQueryParameter(maxPrice, queryData.activityQueryPrice.activityPriceMin.toString())
+        }
+
+        if(queryData.activityNumberParticipants != null && queryData.activityNumberParticipants > 0){
+            builder.appendQueryParameter(participants, queryData.activityNumberParticipants.toString())
+        }
+
+        if(queryData.activityType != null && queryData.activityType != ""){
+            builder.appendQueryParameter(activityType, queryData.activityType)
+        }
         return builder.build().toString()
     }
 

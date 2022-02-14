@@ -36,6 +36,38 @@
     <string name="activityDetailsLinkHeader">Link</string>
     <string name="activityDetailsTitleHeader">Activity</string>
     <string name="activityDetailsProgressHeader">Progress</string>
+    <string name="searchFilterAccessibility">Accessibility</string>
+    <string name="searchFilterPrice">Price</string>
+    <string name="searchFilterType">Type</string>
+
+        <string-array
+            name="activityTypes">
+        <item>education</item>
+        <item>recreational</item>
+        <item>social</item>
+        <item>diy</item>
+        <item>charity</item>
+        <item>cooking</item>
+        <item>relaxation</item>
+        <item>music</item>
+        <item>busywork</item>
+        </string-array>
+
+    <string-array
+        name="activityAccessibilityLevels">
+        <item>Very Easy</item>
+        <item>Easy</item>
+        <item>Slightly Difficult</item>
+        <item>Difficult</item>
+    </string-array>
+
+    <string-array
+        name="activityPrices">
+        <item>FREE</item>
+        <item>£</item>
+        <item>££</item>
+        <item>£££</item>
+    </string-array>
 
 
 </resources>

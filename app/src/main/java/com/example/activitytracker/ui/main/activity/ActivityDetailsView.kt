@@ -15,12 +15,25 @@ class ActivityDetailsView(private val view: ActivityDetailsFragmentBinding) {
         }
     }
 
-    fun setProgressOnChangeListener(listener:  ()-> Unit){
-        view.activityDetailsProgressSlider.setOnClickListener {
-            listener.invoke()
-        }
+    fun setProgressOnChangeListener(listener:  (Int?) -> Unit){
+        view.activityDetailsProgressSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                //onProgressChanged
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                //onStartTrackingTouch
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                listener.invoke(seekBar?.progress)
+            }
+        })
     }
 
+    fun setActivityProgress(progress: Int?){
+        if(progress != null){
+            view.activityDetailsProgressSlider.progress = progress
+        }
+    }
 
     fun setActivityTitle(title: String){
         view.activityDetailsTitle.text = title

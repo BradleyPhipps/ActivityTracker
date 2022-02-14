@@ -2,6 +2,7 @@ package com.example.activitytracker.ui.main.search
 
 import android.content.Context
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.activitytracker.R
@@ -13,19 +14,24 @@ class SearchView(private val view: SearchFragmentBinding) {
 
     val context: Context = view.root.context
 
-    var minAccessibility: Float = 0f
-    var maxAccessibility: Float = 1f
-        get() = view.maxAccessibility.text.toString().toFloat()
-    var participants: Int = 0
-    var minPrice: Float = 0f
-    var maxPrice: Float = 1f
-    var activityType: String = ""
 
-    fun setSearchClickListener(listener:(Float)-> Unit){
+    var accessibility:String = ""
+        get() = view.accessibilitySpinner.selectedItem.toString()
+        private set(value: String) {field = value}
+    var priceString = ""
+        get() = view.priceSpinner.selectedItem.toString()
+        private set(value: String) {field = value}
+    var activityType:String = ""
+         get() = view.typeSpinner.selectedItem.toString()
+        private set(value: String) {field = value}
+
+    fun setSearchClickListener(listener:()-> Unit){
         view.search.setOnClickListener() {
-            listener.invoke(maxAccessibility)
+            listener.invoke()
         }
     }
+
+
 
     fun setFollowButtonText(followButton: Button, followingActivity: Boolean) {
         when (followingActivity) {
@@ -57,6 +63,39 @@ class SearchView(private val view: SearchFragmentBinding) {
             adapter = activityAdapter
         }
 
+    }
+
+    fun populateTypeSpinner(){
+        ArrayAdapter.createFromResource(
+            view.root.context,
+            R.array.activityTypes,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { arrayAdapter ->
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            view.typeSpinner.adapter = arrayAdapter
+        }
+    }
+
+    fun populatePriceSpinner(){
+        ArrayAdapter.createFromResource(
+            view.root.context,
+            R.array.activityPrices,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { arrayAdapter ->
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            view.priceSpinner.adapter = arrayAdapter
+        }
+    }
+
+    fun populateAccessibilitySpinner(){
+        ArrayAdapter.createFromResource(
+            view.root.context,
+            R.array.activityAccessibilityLevels,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { arrayAdapter ->
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            view.accessibilitySpinner.adapter = arrayAdapter
+        }
     }
 
 }

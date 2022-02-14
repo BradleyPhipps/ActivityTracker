@@ -28,7 +28,7 @@ class MyActivitiesViewModel(
     var onActivityDataLoading: (() -> Unit)? = null
     var onFollowStateChanged:((Button, Boolean) -> Unit)? = null
 
-    fun onItemSelected(activityData: ActivityCoreData){
+    fun navigateToSelectedItem(activityData: ActivityCoreData){
         Log.d("Logs: ", activityData.activityTitle)
         navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activityData)
     }
@@ -53,11 +53,9 @@ class MyActivitiesViewModel(
 
     @ExperimentalCoroutinesApi
     fun getSavedActivities() {
-
         onActivityDataLoading?.invoke()
-
         viewModelScope.launch {
-            activityList = activityService.getSavedActivities(savedActivityRepository.getSavedActivites().toList())
+            activityList = activityService.getSavedActivities(savedActivityRepository.getSavedActivites())
             onActivityDataLoaded?.invoke()
             dataLoaded = true
         }
