@@ -9,19 +9,19 @@ import com.example.activitytracker.services.activity.ActivityCardBuilder
 class HomeView(private val view: HomeFragmentBinding) {
 
     fun setButtonClickedListener(listener: () -> Unit){
-        view.buttonGenerateActivity.setOnClickListener() {
+        view.buttonGenerateActivity.setOnClickListener {
             listener.invoke()
         }
     }
 
     fun setActivityCardClickedListener(listener: () -> Unit){
-        view.activityCard.root.setOnClickListener() {
+        view.activityCard.root.setOnClickListener {
             listener.invoke()
         }
     }
 
     fun setFollowActivityClickedListener(listener: () -> Unit){
-        view.activityCard.saveActivity.setOnClickListener() {
+        view.activityCard.saveActivity.setOnClickListener {
             listener.invoke()
         }
     }

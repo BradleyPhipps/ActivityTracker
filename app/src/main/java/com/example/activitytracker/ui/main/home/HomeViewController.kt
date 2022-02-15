@@ -6,15 +6,12 @@ class HomeViewController(
     private val view: HomeView,
     private val viewModel: HomeViewModel
 ) {
-    init {
-    }
-    //called in the fragment once the controller has been initialised
+        //called in the fragment once the controller has been initialised
     @ExperimentalCoroutinesApi
     fun onViewReady(){
-        viewModel.onActivityDataLoaded = {
-            view.hideLoadingSpinner()
-            view.displayCard(viewModel.activityResponse)}
-        viewModel.onActivityDataLoading = { displayLoadingSpinner() }
+        //could improve this by having the dataloadingstate thing
+        viewModel.onActivityDataLoaded = { displayData()}
+        viewModel.onActivityDataLoading = { displayLoadingSpinner()}
         viewModel.onFollowStateChanged = { displayFollowStateChange()}
 
         view.setButtonClickedListener { viewModel.getActivity() }
@@ -24,10 +21,9 @@ class HomeViewController(
         viewModel.getActivity()
     }
 
-
-
-    fun displayData(){
-
+    private fun displayData(){
+        view.hideLoadingSpinner()
+        view.displayCard(viewModel.activityResponse)
     }
 
     private fun displayLoadingSpinner(){

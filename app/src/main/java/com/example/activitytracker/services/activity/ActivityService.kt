@@ -7,6 +7,7 @@ import com.example.activitytracker.services.converter.ActivityResponseToActivity
 import com.example.activitytracker.services.data.DataService
 import com.example.activitytracker.services.results.DataServiceResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @ExperimentalCoroutinesApi
 class ActivityService(
     private val dataService: DataService,

@@ -34,6 +34,7 @@ class HomeViewModel(
         navService.navigateToFragmentWithData(R.id.action_global_activityDetailsFragment, activity)
     }
 
+    //stores a given activity in the savedActivityRepository
     fun setActivityFollow(activity: ActivityCoreData){
         val currentlyFollowing = activity.activityFollowed
 
