@@ -28,9 +28,8 @@ abstract class ActivityFragmentWithRecyclerView(
         }
 
         fun setActivityFollow(activity: ActivityCoreData){
-            val currentlyFollowing = activity.activityFollowed
 
-            when(currentlyFollowing){
+            when(val currentlyFollowing = activity.activityFollowed){
                 true -> {
                     savedActivityRepository.unfollowActivity(activity.activityId)
                     activity.activityFollowed = !currentlyFollowing

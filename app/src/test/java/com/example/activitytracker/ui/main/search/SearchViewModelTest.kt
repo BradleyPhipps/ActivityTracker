@@ -47,7 +47,7 @@ class SearchViewModelTest {
             false,
             0)
 
-    val mockQueryData = ActivityQueryData(
+    private val mockQueryData = ActivityQueryData(
         ActivityQueryAccessibility(
             0f,
             -1f

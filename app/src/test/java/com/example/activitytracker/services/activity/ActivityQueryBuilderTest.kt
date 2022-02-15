@@ -3,9 +3,6 @@ package com.example.activitytracker.services.activity
 import com.example.activitytracker.models.ActivityQueryAccessibility
 import com.example.activitytracker.models.ActivityQueryData
 import com.example.activitytracker.models.ActivityQueryPrice
-import junit.framework.Assert.assertEquals
-import junit.framework.TestCase
-import org.junit.Test
 
 class ActivityQueryBuilderTest {
 

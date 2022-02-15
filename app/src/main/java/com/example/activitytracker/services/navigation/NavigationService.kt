@@ -9,7 +9,7 @@ class NavigationService(
     val jsonService: JsonService
 ) {
     companion object{
-        val bundleKey = "activityString"
+        const val bundleKey = "activityString"
     }
     fun navigateToFragment(destinationActionId: Int){
         navController.navigate(destinationActionId)

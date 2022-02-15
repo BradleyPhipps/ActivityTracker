@@ -10,5 +10,4 @@ data class ActivityCoreData(
     val activityType: String,
     var activityFollowed: Boolean,
     var activityProgress: Int = 0
-) {
-}
+)

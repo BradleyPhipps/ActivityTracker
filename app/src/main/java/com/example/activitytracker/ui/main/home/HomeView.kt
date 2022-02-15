@@ -34,7 +34,7 @@ class HomeView(private val view: HomeFragmentBinding) {
         view.LoadingSpinner.visibility = View.GONE
     }
 
-    fun displayCard(activityData: ActivityCoreData){//, onClick: ()-> Unit
+    fun displayCard(activityData: ActivityCoreData){
         ActivityCardBuilder(view.activityCard.root).buildCard(activityData)
         view.ActivityContainer.visibility = View.VISIBLE
     }

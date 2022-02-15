@@ -16,7 +16,7 @@ typealias ItemFollowButtonClickListener = (ActivityCoreData) -> Unit
 class MyActivitiesViewModel(
     private val activityService: ActivityService,
     private val savedActivityRepository: SavedActivityRepository,
-    private val navService: NavigationService
+    navService: NavigationService
     ) : ActivityFragmentWithRecyclerView(activityService,savedActivityRepository,navService){
 
     @ExperimentalCoroutinesApi

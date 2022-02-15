@@ -32,10 +32,10 @@ class NetworkService : INetworkService {
                 override fun onResponse(call: Call, response: Response) {
                     response.body?.string()?.also {
                         lateinit var outcome: NetworkResult<String>
-                        if(it.contains("error")){
-                            outcome   = NetworkResult.Error(Exception(it))
+                        outcome = if(it.contains("error")){
+                            NetworkResult.Error(Exception(it))
                         }else{
-                            outcome   = NetworkResult.Success(it)
+                            NetworkResult.Success(it)
                         }
                         continuation.resume(outcome, null)
                     }

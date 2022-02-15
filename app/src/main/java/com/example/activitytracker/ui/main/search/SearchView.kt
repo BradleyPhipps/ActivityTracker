@@ -17,16 +17,16 @@ class SearchView(private val view: SearchFragmentBinding) {
 
     var accessibility:String = ""
         get() = view.accessibilitySpinner.selectedItem.toString()
-        private set(value: String) {field = value}
+        private set
     var priceString = ""
         get() = view.priceSpinner.selectedItem.toString()
-        private set(value: String) {field = value}
+        private set
     var activityType:String = ""
          get() = view.typeSpinner.selectedItem.toString()
-        private set(value: String) {field = value}
+        private set
 
     fun setSearchClickListener(listener:()-> Unit){
-        view.search.setOnClickListener() {
+        view.search.setOnClickListener {
             listener.invoke()
         }
     }

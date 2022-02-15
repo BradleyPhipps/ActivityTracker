@@ -7,7 +7,7 @@ import android.util.Log
 import com.example.activitytracker.R
 import com.example.activitytracker.models.ActivityQueryData
 
-class ActivityQueryBuilder() {
+class ActivityQueryBuilder {
 
 
 

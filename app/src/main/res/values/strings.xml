@@ -65,10 +65,10 @@
     <string name="cardTextCategoryBusywork">busywork</string>
     <string name="cardTextCategorySocial">social</string>
     <string name="cardTextCategoryRelaxation">relaxation</string>
+    <string name="activityCard_defaultDescription">Banner Image</string>
 
 
-
-        <string-array
+    <string-array
             name="activityTypes">
             <item> </item>
             <item>education</item>

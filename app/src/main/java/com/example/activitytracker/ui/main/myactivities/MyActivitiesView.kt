@@ -11,7 +11,7 @@ import com.example.activitytracker.models.ActivityCoreData
 class MyActivitiesView(private val view: MyActivitiesFragmentBinding) {
 
     fun setOnSwipeToRefreshListener(listener: () -> Unit) {
-        view.refreshLayout.setOnRefreshListener() {
+        view.refreshLayout.setOnRefreshListener {
             listener.invoke()
         }
     }

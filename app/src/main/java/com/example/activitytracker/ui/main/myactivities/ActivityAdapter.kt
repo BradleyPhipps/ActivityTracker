@@ -10,7 +10,7 @@ import com.example.activitytracker.models.ActivityCoreData
 import com.example.activitytracker.services.activity.ActivityCardBuilder
 
 class ActivityAdapter (
-    val activityList: List<ActivityCoreData>,
+    private val activityList: List<ActivityCoreData>,
     private val activitySelectedListener:  SelectedItemListener,
     private val activityFollowButtonClickListener: ItemFollowButtonClickListener
     ): RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {

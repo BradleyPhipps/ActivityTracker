@@ -37,7 +37,7 @@ class ActivityDetailsViewModelTest {
 
     private var mockActivityDataString = "dataString"
 
-    var mockActivity =
+    private var mockActivity =
         ActivityCoreData(0.0f,
             "test",
             "1234",
