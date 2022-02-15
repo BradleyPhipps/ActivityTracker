@@ -30,6 +30,7 @@ class ActivityDetailsViewModel(
         if(progress != null){
             activityCoreData.activityProgress = progress
             savedActivityRepository.updateActivityProgress(activityCoreData.activityId, activityCoreData.activityProgress)
+
         }
     }
 

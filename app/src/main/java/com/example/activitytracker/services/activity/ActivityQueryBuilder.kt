@@ -9,8 +9,6 @@ import com.example.activitytracker.models.ActivityQueryData
 
 class ActivityQueryBuilder {
 
-
-
     //region member declarations
     private val scheme = "https"
     private val authority = "www.boredapi.com"

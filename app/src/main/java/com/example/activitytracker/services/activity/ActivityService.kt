@@ -11,7 +11,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class ActivityService(
     private val dataService: DataService,
-    private val activityCoreDataConverter: ActivityResponseToActivityCoreDataConverter
+    private val activityCoreDataConverter: ActivityResponseToActivityCoreDataConverter,
+    private val activityQueryBuilder: ActivityQueryBuilder
     ) {
 
     companion object{
@@ -78,7 +79,7 @@ class ActivityService(
 
         for (i in 0..numOfActivities) {
             when (val response = dataService.requestApiDataToObject<ActivityResponse>(
-                ActivityQueryBuilder().buildQuery(queryData))) {
+                activityQueryBuilder.buildQuery(queryData))) {
                 is DataServiceResult.Success -> {
                     val activityToAdd = activityCoreDataConverter.convert(response.data)
                     activityToAdd.activityFollowed = savedActivityKeys.contains(activityToAdd.activityId)

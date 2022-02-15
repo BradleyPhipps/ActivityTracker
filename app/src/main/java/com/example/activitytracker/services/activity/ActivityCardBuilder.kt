@@ -14,7 +14,13 @@ class ActivityCardBuilder(private val cardView: View) {
         setPriceText(cardView.findViewById(R.id.activityPrice), activityData.activityPrice)
         setImageBanner(cardView.findViewById(R.id.activityImage), activityData.activityType, activityData.activityTitle)
         setFollowButtonText(cardView.findViewById(R.id.saveActivity), activityData.activityFollowed)
+    }
 
+    companion object {
+        const val free = "FREE"
+        const val cheap = "£"
+        const val medium = "££"
+        const val expensive = "£££"
     }
 
     fun setCardListener(onFollowButtonClickListener: ()-> Unit){
@@ -34,10 +40,10 @@ class ActivityCardBuilder(private val cardView: View) {
 
     private fun setPriceText(priceTextView: TextView, priceValue: Float){
         when(priceValue){
-            0f -> priceTextView.text = "FREE"
-            in 0.01f..0.3f -> priceTextView.text = "£"
-            in 0.31f..0.6f -> priceTextView.text = "££"
-            in 0.61f..1f -> priceTextView.text = "£££"
+            0f -> priceTextView.text = free
+            in 0.01f..0.3f -> priceTextView.text = cheap
+            in 0.31f..0.6f -> priceTextView.text = medium
+            in 0.61f..1f -> priceTextView.text = expensive
         }
     }
 

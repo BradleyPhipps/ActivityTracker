@@ -2,6 +2,7 @@ package com.example.activitytracker.services
 
 import android.content.Context
 import androidx.navigation.NavController
+import com.example.activitytracker.services.activity.ActivityQueryBuilder
 import com.example.activitytracker.services.activity.SavedActivityRepository
 import com.example.activitytracker.services.activity.ActivityService
 import com.example.activitytracker.services.converter.ActivityResponseToActivityCoreDataConverter
@@ -39,10 +40,15 @@ class ServiceFactory (private val context: Context, private val navController: N
         return SavedActivityRepository(createSharedPreferencesService())
     }
 
+    fun createActivityQueryBuilder(): ActivityQueryBuilder{
+        return ActivityQueryBuilder()
+    }
+
     fun createActivityService(): ActivityService {
         val dataService = createDataService()
         val activityCoreDataConverter = createActivityConverter()
-        return ActivityService(dataService,activityCoreDataConverter)
+        val activityQueryBuilder = createActivityQueryBuilder()
+        return ActivityService(dataService,activityCoreDataConverter, activityQueryBuilder)
     }
 
     fun createNavigationService(): NavigationService {
